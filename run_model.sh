@@ -32,7 +32,7 @@ cd /lustre/miifs01/project/m2_jgu-w2w/w2w/egroot/CM1mod/cm1r19.8/run
 
 ##test -f cm1.exe && ./cm1.exe
 ##test -f cm1.exe || echo "The file is not there. Cannot run."
-###
+
 srun -n120 ./cm1.exe
 
 mkdir $dirname
