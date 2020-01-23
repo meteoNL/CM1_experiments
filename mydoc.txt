@@ -1,0 +1,59 @@
+Run the model: 
+- check necessity to compile the file or not by running makefile
+- change file namelist.input
+- go to source directory (/src) and run command "make" 
+- run the "./cm1.exe" from the run directory
+
+Model run with scripts: 
+- determine settings for resolution, control_lve and control_vadv
+- change name of run in run_model.sh
+- determine node configuration for both namelist.input and run_model.sh
+- load modules
+- run model run script
+- load python module for python 3.6
+- run python scripts in the scripts folder
+- if high resolution: run python subscripts, each time producing png's for 5 time steps using the scripts/scripts_per_T/-folder. Then do the integrated budgets run on a bigger node with enough power and approx 45 minutes of run time. The time steps of the timing variable in div.py now should be np.arange(19).
+
+
+
+Yet activated (?) in output: -- No, not activated
+- microphysical theta tendency 
+- vertical advection of horizontal momentum components
+Both are activated with "output_w" being true
+
+How to activate an output variable:
+- put the desired variable under one of the output-ifs in the "write_out.nc" (which is in /src-directory)
+- activate that output group in the namelist file
+
+How to change constant LvE:
+- Change it in constants.F
+- Change it in Morrison.F
+- Change it in getcape.F
+
+How to make correct diagnosis of ub_vadv2/ub_diag:
+- Add its definition to input.F
+- Add it in param.F
+- Add it in writeout.F
+- Calculate it in adv.F
+- Pay attention to all appearances
+- Pay attention to the order of the different lines, such that advz is not adapted during the calculation
+
+How to make vertical advection of qv zero?
+- s is the tracer in Solve.F
+- make an n in Solve.F
+- add n everywhere as argument when advs is called
+- print n when advs is called
+- change hifrq.F also for calls of advs!
+- in advs function: if ntrac ne. 1 then ... else ...
+- result in 1200 m run: 113 m/s updraft with TKE values up to 893 m2/s2 and then instability 
+
+Same thing for ptb_vadv: make thflag and replace everywhere with 0 or 1
+
+When changing and adding namelist.input variable
+- remove parameter declaration in getcape
+- use input, only: statement
+- change all the files with use statements
+- declare a real that is no parameter and then give it a value later
+- edit namelist.input
+- edit types in input
+- edit order of input and constants in makefile

@@ -1,0 +1,116 @@
+#!/usr/bin/env python3
+###### -*- coding: utf-8 -*-
+"""
+Created on Tue Nov 26 10:56:38 2019
+
+@author: egroot
+"""
+import netCDF4 as S
+import numpy as np
+import matplotlib.pyplot as pl
+import matplotlib
+#import numpy.ma as ma
+from div import D2div, MSE_inst
+
+matplotlib.rcParams.update({'font.size': 18})
+
+# simulations to compare
+namesim0="initial_run_200m_dt1.5"
+namesim1="initial_run_500m"
+namesim="initial_run_100m_cubic"
+path="/lustre/project/m2_jgu-w2w/w2w/egroot/CM1/cm1r19.8/run/"
+#load netCDF data
+test = S.Dataset(path+namesim+"/cm1out.nc",mode="r") # get netCDF data
+test0=S.Dataset(path+namesim0+"/cm1out.nc",mode="r")
+test1=S.Dataset(path+namesim1+"/cm1out.nc",mode="r")
+
+#set domain budget calculations
+x1, x2, y1, y2 = -35, 60, -30, 50
+
+    
+def integration_mask(x1,x2,y1,y2,xmask,ymask):
+    ''' Defines (fixed!) masked region over which vertical profiles should be calculated with this script'''
+    selection=xmask>x1
+    selection = selection*(xmask<x2)*(ymask>y1)*(ymask<y2)
+    return selection
+
+def prepare_data(dataset):
+    '''Reads in grids of data, selects region of interest for calculations, calculates divergence and moist static energy
+    and extracts time and veritcal levels to add correct tmie stamp in the plots'''
+    xmask,ymask = np.meshgrid(dataset["xh"],dataset["yh"])
+    selection = integration_mask(x1,x2,y1,y2,xmask,ymask)
+    div = D2div(dataset,xmask,ymask)
+    MSE = MSE_inst(dataset)
+    lvls = len(dataset["z"])
+    time_stamp=90
+    time=test["time"][:]/60
+    stamp=int(np.arange(len(time))[time==time_stamp])
+    return selection, div, MSE, lvls, time_stamp, stamp
+
+def returnfourzeroarrays(size):
+    '''This function returns four arrays of the same shape'''
+    array1,array2,array3,array4=np.zeros(size),np.zeros(size),np.zeros(size),np.zeros(size)
+    return array1, array2, array3, array4
+
+def fillarrays(size,dataset,divar,MSEarray,selectionarray):
+    '''This function fills arrays with the appropriate values from the dataset for condensation (qt_cond), 
+    divergence, vertical advection of horizontal momentum and change in moist static energy'''
+    qvarray,divarray,momadvarray,deltaMSE=np.zeros(size),np.zeros(size),np.zeros(size),np.zeros(size)
+    for i in np.arange(size):
+        qvarray[i]=np.mean(-dataset["qt_cond"][0:stamp,i,:,:]*selectionarray)
+        divarray[i]=np.mean(divar[stamp,i,:,:]*selectionarray)
+        momadvarray[i] = np.mean(np.sqrt((dataset["ub_diag"][0:stamp,i,:,1:]*selectionarray)**2+(dataset["vb_diag"][0:stamp,i,1:,:]*selectionarray)**2))
+        deltaMSE[i] = np.mean((MSEarray[stamp,i,:,:]*selectionarray)-(MSEarray[0,i,:,:]*selectionarray))   
+        
+        ## in the momentum-advection there is still a rather poor and crude solution to the differential grids problem above!!
+    return qvarray, divarray, momadvarray, deltaMSE
+
+#execute functions for netCDF data
+selection, div, MSE, lvls, time_stamp, stamp = prepare_data(test)
+selection0, div0, MSE0, lvls0, time_stamp0, stamp0 = prepare_data(test0)
+selection1, div1, MSE1, lvls1, time_stamp1, stamp1 = prepare_data(test1)
+
+#create arrays to store budget calculation values
+qv_array, div_array, momadv_array, delta_MSE = returnfourzeroarrays(lvls)
+qv_array0, div_array0, momadv_array0, delta_MSE0 = returnfourzeroarrays(lvls0)
+qv_array1, div_array1, momadv_array1, delta_MSE1 = returnfourzeroarrays(lvls1)
+
+#calculate profiles for both runs in comparison
+qv_array, div_array, momadv_array, delta_MSE = fillarrays(lvls, test, div, MSE, selection)
+qv_array0, div_array0, momadv_array0, delta_MSE0 = fillarrays(lvls0, test0, div0, MSE0, selection0)
+qv_array1, div_array1, momadv_array1, delta_MSE1 = fillarrays(lvls1, test1, div1, MSE1, selection1)
+
+#create plot with subplot and axes
+fig = pl.figure(figsize=(8,12))
+ax1 = fig.add_subplot(111)
+ax2 = ax1.twiny() 
+
+#plot the arrays of interest
+ax1.plot(qv_array[:],test["z"][:],c="r", label= r"Condensation rate ($s^{-1}$)")
+ax1.plot(qv_array0[:],test0["z"][:],c="r", ls="--")
+ax1.plot(qv_array1[:],test1["z"][:],c="r", ls=":")
+ax1.legend(loc="lower left", frameon=False)
+ax2.plot(100000*div_array[:],test["z"][:],c="b",label=r"Divergence ($10^{-5} s^{-1}$)")
+ax2.plot(100000*div_array0[:],test0["z"][:],c="b",ls="--")
+ax2.plot(100000*div_array1[:],test1["z"][:],c="b",ls=":")
+ax2.plot(10000*momadv_array[:],test["z"][:],c="g", label=r"Vert. adv. of hor. mom. ($0.0001$ $ms^{-2}$)")
+ax2.plot(10000*momadv_array0[:],test0["z"][:],c="g",ls="--")
+ax2.plot(10000*momadv_array1[:],test1["z"][:],c="g",ls=":")
+ax2.plot(0.01*delta_MSE[:],test["z"][:],c="y",label=r"$\Delta$Moist static energy ($100$ $J/kg$)")
+ax2.plot(0.01*delta_MSE0[:],test0["z"][:],c="y",ls="--")
+ax2.plot(0.01*delta_MSE1[:],test1["z"][:],c="y",ls=":")
+
+#create layout of the plots
+pl.legend(loc ="upper left",frameon=False)
+pl.text(0,-4,"Dotted "+str(namesim1), ha="center")
+pl.text(0,-5,"Dashed "+str(namesim0), ha="center")
+pl.text(0,-6,"Solid "+str(namesim), ha="center")
+pl.ylim(-2.5,25)
+pl.grid()
+ax1.set_ylabel("z (km)")
+pl.title("Mean effects after %d minutes of simulation" % time_stamp)
+
+#display plot
+#pl.show()
+pl.savefig(path+"budgets_"+namesim+"_"+namesim0+"_"+namesim1+".png")
+pl.clf()

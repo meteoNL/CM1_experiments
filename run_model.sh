@@ -1,0 +1,48 @@
+#!/bin/bash
+
+#SBATCH -A m2_esm
+#SBATCH -p parallel
+#SBATCH -t1440 ###4500
+#SBATCH -N3
+#SBATCH -n120
+#SBATCH --mail-type=ALL
+#SBATCH --mail-user=egroot
+#SBATCH --mem-per-cpu=3100M
+
+dirname="control_ref_200m"
+
+
+#### Load modules
+
+#####module load compiler/ifort/2018.3.222-GCC-6.3.0
+#####module load data/netCDF-Fortran/4.4.4-intel-2018.03
+#####module load mpi/impi/2018.3.222-iccifort-2018.3.222-GCC-6.3.0
+
+##module purge
+##module load data/netCDF-Fortran/4.4.4-intel-2017.02-HDF5-1.8.18
+
+## compile the model as in model compiler description
+## cd /lustre/miifs01/project/m2_jgu-w2w/w2w/egroot/CM1/cm1r19.8/src
+##make clean
+##make
+
+# cd ../run/
+
+cd /lustre/miifs01/project/m2_jgu-w2w/w2w/egroot/CM1mod/cm1r19.8/run
+
+##test -f cm1.exe && ./cm1.exe
+##test -f cm1.exe || echo "The file is not there. Cannot run."
+###
+srun -n120 ./cm1.exe
+
+mkdir $dirname
+cp cm1out.nc $dirname
+mv cm1out_stats.nc $dirname
+cp onefile.F $dirname
+cp cm1.exe $dirname
+cp namelist.input $dirname 
+
+
+
+
+
