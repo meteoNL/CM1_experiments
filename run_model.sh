@@ -9,7 +9,7 @@
 #SBATCH --mail-user=egroot
 #SBATCH --mem-per-cpu=3100M
 
-dirname="control_ref_200m"
+dirname="ref_200m"
 
 
 #### Load modules

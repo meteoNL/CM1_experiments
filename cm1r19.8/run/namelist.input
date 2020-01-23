@@ -1,12 +1,12 @@
 
  &param0
- nx           =     240,
- ny           =     240,
- nz           =      80,
- nodex        =       1,
+ nx           =     600,
+ ny           =     600,
+ nz           =     200,
+ nodex        =       3,
  nodey        =      40,
  ppnode       =      40,
- control_lve  =    0.50,
+ control_lve  =    1.00,
  control_vadv =    1.00,
  timeformat   =       2,
  timestats    =       1,
@@ -15,9 +15,9 @@
  /
 
  &param1
- dx     =   500.0,
- dy     =   500.0,
- dz     =   250.0,
+ dx     =   200.0,
+ dy     =   200.0,
+ dz     =   100.0,
  dtl    =   0.750,
  timax  =  7200.0,
  run_time =-999.9,
