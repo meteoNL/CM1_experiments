@@ -5,7 +5,7 @@
 
 ###@author: Edward and Chenxi
 ###"""
-namesim="control_lve_0.5_500m"
+namesim="ref_200m"
 path="/lustre/project/m2_jgu-w2w/w2w/egroot/CM1mod/cm1r19.8/run/"
 import numpy as np
 import matplotlib.pyplot as pl
@@ -403,7 +403,7 @@ def Tdew(T,wv,p):
     return Tdew
 xbarbs=304
 knms=0.5144
-everyW=3
+everyW=9
 def plotbarbs(u,v,z,everyW):
     for i in np.arange(0,len(u),everyW):
         if z[i]< 16:
