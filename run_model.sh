@@ -9,7 +9,7 @@
 #SBATCH --mail-user=egroot
 #SBATCH --mem-per-cpu=1100M
 
-dirname="control_lve_0.9"
+dirname="no_sim"
 
 
 #### Load modules
@@ -29,18 +29,22 @@ dirname="control_lve_0.9"
 # cd ../run/
 
 cd /lustre/miifs01/project/m2_jgu-w2w/w2w/egroot/CM1mod/cm1r19.8/run
+mkdir $dirname
+cd $dirname
+cp ../onefile.F .
+cp ../cm1.exe .
+cp ../namelist.input .
 
 ##test -f cm1.exe && ./cm1.exe
 ##test -f cm1.exe || echo "The file is not there. Cannot run."
 
 srun -n120 ./cm1.exe
 
-mkdir $dirname
-cp cm1out.nc $dirname
-mv cm1out_stats.nc $dirname
-cp onefile.F $dirname
-cp cm1.exe $dirname
-cp namelist.input $dirname 
+##cp cm1out.nc $dirname
+##mv cm1out_stats.nc $dirname
+##cp onefile.F $dirname
+##cp cm1.exe $dirname
+##cp namelist.input $dirname 
 
 
 

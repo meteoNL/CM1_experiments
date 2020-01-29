@@ -21,6 +21,8 @@ def plot_cross_sections(varname1, varname2, xmask1, zmask1, xmask2, zmask2,clrs2
     '''This function makes some cross sections at all time steps saved in the netcdf'''
     fnames=[] #initialise list for names
     minimum,maximum = autoextremes(varname1) #calculate values for legend
+    if minimum==maximum:
+        minimum = maximum - 0.001
     viewdbz=varname1[:,:,:,xcell] #extract variables at one x-coordinate
     viewdbz2 = varname2[:,:,:,xcell]
     clrs = np.linspace(minimum, maximum) #create array for colors

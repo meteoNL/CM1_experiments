@@ -15,14 +15,16 @@ from div import D2div, MSE_inst
 matplotlib.rcParams.update({'font.size': 18})
 
 # simulations to compare
-namesim0="initial_run_200m_dt1.5"
-namesim1="initial_run_500m"
-namesim="initial_run_100m_cubic"
-path="/lustre/project/m2_jgu-w2w/w2w/egroot/CM1/cm1r19.8/run/"
+namesim0="control_lve_0.6"
+namesim1="control_lve_0.8"
+namesim2="control_lve_0.9"
+namesim="ref_200m"
+path="/lustre/project/m2_jgu-w2w/w2w/egroot/CM1mod/cm1r19.8/run/"
 #load netCDF data
 test = S.Dataset(path+namesim+"/cm1out.nc",mode="r") # get netCDF data
 test0=S.Dataset(path+namesim0+"/cm1out.nc",mode="r")
 test1=S.Dataset(path+namesim1+"/cm1out.nc",mode="r")
+test2=S.Dataset(path+namesim2+"/cm1out.nc",mode="r")
 
 #set domain budget calculations
 x1, x2, y1, y2 = -35, 60, -30, 50
@@ -69,16 +71,17 @@ def fillarrays(size,dataset,divar,MSEarray,selectionarray):
 selection, div, MSE, lvls, time_stamp, stamp = prepare_data(test)
 selection0, div0, MSE0, lvls0, time_stamp0, stamp0 = prepare_data(test0)
 selection1, div1, MSE1, lvls1, time_stamp1, stamp1 = prepare_data(test1)
-
+selection2, div2, MSE2, lvls2, time_stamp2, stamp2 = prepare_data(test2)
 #create arrays to store budget calculation values
 qv_array, div_array, momadv_array, delta_MSE = returnfourzeroarrays(lvls)
 qv_array0, div_array0, momadv_array0, delta_MSE0 = returnfourzeroarrays(lvls0)
 qv_array1, div_array1, momadv_array1, delta_MSE1 = returnfourzeroarrays(lvls1)
-
+qv_array2, div_array2, momadv_array2, delta_MSE2 = returnfourzeroarrays(lvls2)
 #calculate profiles for both runs in comparison
 qv_array, div_array, momadv_array, delta_MSE = fillarrays(lvls, test, div, MSE, selection)
 qv_array0, div_array0, momadv_array0, delta_MSE0 = fillarrays(lvls0, test0, div0, MSE0, selection0)
 qv_array1, div_array1, momadv_array1, delta_MSE1 = fillarrays(lvls1, test1, div1, MSE1, selection1)
+qv_array2, div_array2, momadv_array2, delta_MSE2 = fillarrays(lvls2, test2, div2, MSE2, selection2)
 
 #create plot with subplot and axes
 fig = pl.figure(figsize=(8,12))
@@ -88,23 +91,28 @@ ax2 = ax1.twiny()
 #plot the arrays of interest
 ax1.plot(qv_array[:],test["z"][:],c="r", label= r"Condensation rate ($s^{-1}$)")
 ax1.plot(qv_array0[:],test0["z"][:],c="r", ls="--")
-ax1.plot(qv_array1[:],test1["z"][:],c="r", ls=":")
+ax1.plot(qv_array1[:],test1["z"][:],c="r", ls="-.")
+ax1.plot(qv_array2[:],test2["z"][:],c="r", ls=":")
 ax1.legend(loc="lower left", frameon=False)
 ax2.plot(100000*div_array[:],test["z"][:],c="b",label=r"Divergence ($10^{-5} s^{-1}$)")
 ax2.plot(100000*div_array0[:],test0["z"][:],c="b",ls="--")
-ax2.plot(100000*div_array1[:],test1["z"][:],c="b",ls=":")
+ax2.plot(100000*div_array1[:],test1["z"][:],c="b",ls="-.")
+ax2.plot(100000*div_array2[:],test2["z"][:],c="b",ls=":")
 ax2.plot(10000*momadv_array[:],test["z"][:],c="g", label=r"Vert. adv. of hor. mom. ($0.0001$ $ms^{-2}$)")
 ax2.plot(10000*momadv_array0[:],test0["z"][:],c="g",ls="--")
-ax2.plot(10000*momadv_array1[:],test1["z"][:],c="g",ls=":")
+ax2.plot(100000*div_array1[:],test1["z"][:],c="b",ls="-.")
+ax2.plot(10000*momadv_array2[:],test2["z"][:],c="g",ls=":")
 ax2.plot(0.01*delta_MSE[:],test["z"][:],c="y",label=r"$\Delta$Moist static energy ($100$ $J/kg$)")
 ax2.plot(0.01*delta_MSE0[:],test0["z"][:],c="y",ls="--")
-ax2.plot(0.01*delta_MSE1[:],test1["z"][:],c="y",ls=":")
+ax2.plot(100000*div_array1[:],test1["z"][:],c="b",ls="-.")
+ax2.plot(0.01*delta_MSE2[:],test2["z"][:],c="y",ls=":")
 
 #create layout of the plots
 pl.legend(loc ="upper left",frameon=False)
-pl.text(0,-4,"Dotted "+str(namesim1), ha="center")
-pl.text(0,-5,"Dashed "+str(namesim0), ha="center")
-pl.text(0,-6,"Solid "+str(namesim), ha="center")
+pl.text(0,-4,"Dotted "+str(namesim2), ha="center")
+pl.text(0,-5,"Dashdotted "+str(namesim1), ha="center")
+pl.text(0,-6,"Dashed "+str(namesim0), ha="center")
+pl.text(0,-7,"Solid "+str(namesim), ha="center")
 pl.ylim(-2.5,25)
 pl.grid()
 ax1.set_ylabel("z (km)")
