@@ -100,6 +100,28 @@ ax2.plot(0.01*delta_MSE[:],test["z"][:],c="y",label=r"$\Delta$Moist static energ
 ax2.plot(0.01*delta_MSE0[:],test0["z"][:],c="y",ls="--")
 ax2.plot(0.01*delta_MSE1[:],test1["z"][:],c="y",ls=":")
 
+#### save data in csv
+np.savetxt(path+namesim+"/momadv.csv",momadv_array,delimiter=",")
+np.savetxt(path+namesim0+"/momadv.csv",momadv_array0,delimiter=",")
+np.savetxt(path+namesim1+"/momadv.csv",momadv_array1,delimiter=",")
+
+np.savetxt(path+namesim+"/div.csv",div_array,delimiter=",")
+np.savetxt(path+namesim0+"/div.csv",div_array0,delimiter=",")
+np.savetxt(path+namesim1+"/div.csv",div_array1,delimiter=",")
+
+np.savetxt(path+namesim+"/qtend.csv",qv_array,delimiter=",")
+np.savetxt(path+namesim0+"/qtend.csv",qv_array0,delimiter=",")
+np.savetxt(path+namesim1+"/qtend.csv",qv_array1,delimiter=",")
+
+np.savetxt(path+namesim+"/delta_MSE.csv",delta_MSE,delimiter=",")
+np.savetxt(path+namesim0+"/delta_MSE.csv",delta_MSE0,delimiter=",")
+np.savetxt(path+namesim1+"/delta_MSE.csv",delta_MSE1,delimiter=",")
+
+np.savetxt(path+namesim+"/zarray.csv",test["z"],delimiter=",")
+np.savetxt(path+namesim0+"/zarray.csv",test0["z"],delimiter=",")
+np.savetxt(path+namesim1+"/zarray.csv",test1["z"],delimiter=",")
+
+
 #create layout of the plots
 pl.legend(loc ="upper left",frameon=False)
 pl.text(0,-4,"Dotted "+str(namesim1), ha="center")

@@ -1,3 +1,5 @@
+
+
 Run the model: 
 - check necessity to compile the file or not by running makefile
 - change file namelist.input
@@ -66,7 +68,10 @@ Simulations and slurm-files
 6109898 --- lve_1.1 simulation, 200 m, control_vadv 1.00, control_lve 1.10
 6109902 --- lve_1.2 simulation, 200 m, control_vadv 1.00, control_lve 1.20
 6109906 --- vadv_0.0 simulation, 200 m, control_vadv 0.00, control_lve 1.00
-6109908 --- vadv_0.0 simulation, 200 m, control_vadv 0.50, control_lve 1.00
-6109920 --- vadv_0.0 simulation, 200 m, control_vadv 1.50, control_lve 1.00
+6109908 --- vadv_0.5 simulation, 200 m, control_vadv 0.50, control_lve 1.00
+6109920 --- vadv_1.5 simulation, 200 m, control_vadv 1.50, control_lve 1.00
 6110035 --- simulation at 1000 m, control_vadv 1.00, control_lve 1.00
-
+6110035 --- simulation at 1000 m, control_vadv 1.00, control_lve 1.00
+6111320 --- simulation cubic grid at 200 m, control_vadv 1.00, control_lve 1.00
+6111523 --- simulation cubic grid at 100 m, control_vadv 1.00, control_lve 1.00
+6117926 --- vadv_0.8 simulation, 200 m, control_vadv 0.80, control_lve 1.00

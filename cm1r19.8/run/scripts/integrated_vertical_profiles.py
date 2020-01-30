@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 ###### -*- coding: utf-8 -*-
-"""
-Created on Tue Nov 26 10:56:38 2019
+######"""
+#####Created on Tue Nov 26 10:56:38 2019
 
-@author: egroot
-"""
+####@author: egroot
+###"""
 import netCDF4 as S
 import numpy as np
 import matplotlib.pyplot as pl
@@ -15,10 +15,10 @@ from div import D2div, MSE_inst
 matplotlib.rcParams.update({'font.size': 18})
 
 # simulations to compare
-namesim0="control_lve_0.6"
-namesim1="control_lve_0.8"
-namesim2="control_lve_0.9"
-namesim="ref_200m"
+namesim0="controlling_lve_0.6"
+namesim1="controlling_lve_0.8"
+namesim2="controlling_lve_1.2"
+namesim="control_ref_200m"
 path="/lustre/project/m2_jgu-w2w/w2w/egroot/CM1mod/cm1r19.8/run/"
 #load netCDF data
 test = S.Dataset(path+namesim+"/cm1out.nc",mode="r") # get netCDF data
@@ -36,13 +36,13 @@ def integration_mask(x1,x2,y1,y2,xmask,ymask):
     selection = selection*(xmask<x2)*(ymask>y1)*(ymask<y2)
     return selection
 
-def prepare_data(dataset):
+def prepare_data(dataset,lvef):
     '''Reads in grids of data, selects region of interest for calculations, calculates divergence and moist static energy
     and extracts time and veritcal levels to add correct tmie stamp in the plots'''
     xmask,ymask = np.meshgrid(dataset["xh"],dataset["yh"])
     selection = integration_mask(x1,x2,y1,y2,xmask,ymask)
     div = D2div(dataset,xmask,ymask)
-    MSE = MSE_inst(dataset)
+    MSE = MSE_inst(dataset,lvef)
     lvls = len(dataset["z"])
     time_stamp=90
     time=test["time"][:]/60
@@ -68,10 +68,10 @@ def fillarrays(size,dataset,divar,MSEarray,selectionarray):
     return qvarray, divarray, momadvarray, deltaMSE
 
 #execute functions for netCDF data
-selection, div, MSE, lvls, time_stamp, stamp = prepare_data(test)
-selection0, div0, MSE0, lvls0, time_stamp0, stamp0 = prepare_data(test0)
-selection1, div1, MSE1, lvls1, time_stamp1, stamp1 = prepare_data(test1)
-selection2, div2, MSE2, lvls2, time_stamp2, stamp2 = prepare_data(test2)
+selection, div, MSE, lvls, time_stamp, stamp = prepare_data(test,1.0)
+selection0, div0, MSE0, lvls0, time_stamp0, stamp0 = prepare_data(test0,0.6)
+selection1, div1, MSE1, lvls1, time_stamp1, stamp1 = prepare_data(test1,0.8)
+selection2, div2, MSE2, lvls2, time_stamp2, stamp2 = prepare_data(test2,1.2)
 #create arrays to store budget calculation values
 qv_array, div_array, momadv_array, delta_MSE = returnfourzeroarrays(lvls)
 qv_array0, div_array0, momadv_array0, delta_MSE0 = returnfourzeroarrays(lvls0)
@@ -107,12 +107,38 @@ ax2.plot(0.01*delta_MSE0[:],test0["z"][:],c="y",ls="--")
 ax2.plot(100000*div_array1[:],test1["z"][:],c="b",ls="-.")
 ax2.plot(0.01*delta_MSE2[:],test2["z"][:],c="y",ls=":")
 
+#### save data in csv
+np.savetxt(path+namesim+"/momadv.csv",momadv_array,delimiter=",")
+np.savetxt(path+namesim0+"/momadv.csv",momadv_array0,delimiter=",")
+np.savetxt(path+namesim1+"/momadv.csv",momadv_array1,delimiter=",")
+np.savetxt(path+namesim2+"/momadv.csv",momadv_array2,delimiter=",")
+
+np.savetxt(path+namesim+"/div.csv",div_array,delimiter=",")
+np.savetxt(path+namesim0+"/div.csv",div_array0,delimiter=",")
+np.savetxt(path+namesim1+"/div.csv",div_array1,delimiter=",")
+np.savetxt(path+namesim2+"/div.csv",div_array2,delimiter=",")
+
+np.savetxt(path+namesim+"/qtend.csv",qv_array,delimiter=",")
+np.savetxt(path+namesim0+"/qtend.csv",qv_array0,delimiter=",")
+np.savetxt(path+namesim1+"/qtend.csv",qv_array1,delimiter=",")
+np.savetxt(path+namesim2+"/qtend.csv",qv_array2,delimiter=",")
+
+np.savetxt(path+namesim+"/delta_MSE.csv",delta_MSE,delimiter=",")
+np.savetxt(path+namesim0+"/delta_MSE.csv",delta_MSE0,delimiter=",")
+np.savetxt(path+namesim1+"/delta_MSE.csv",delta_MSE1,delimiter=",")
+np.savetxt(path+namesim2+"/delta_MSE.csv",delta_MSE2,delimiter=",")
+
+np.savetxt(path+namesim+"/zarray.csv",test["z"],delimiter=",")
+np.savetxt(path+namesim0+"/zarray.csv",test0["z"],delimiter=",")
+np.savetxt(path+namesim1+"/zarray.csv",test1["z"],delimiter=",")
+np.savetxt(path+namesim2+"/zarray.csv",test2["z"],delimiter=",")
+
 #create layout of the plots
 pl.legend(loc ="upper left",frameon=False)
-pl.text(0,-4,"Dotted "+str(namesim2), ha="center")
-pl.text(0,-5,"Dashdotted "+str(namesim1), ha="center")
+pl.text(40,-5,"Dotted "+str(namesim2), ha="center")
+pl.text(40,-6,"Dashdotted "+str(namesim1), ha="center")
 pl.text(0,-6,"Dashed "+str(namesim0), ha="center")
-pl.text(0,-7,"Solid "+str(namesim), ha="center")
+pl.text(0,-5,"Solid "+str(namesim), ha="center")
 pl.ylim(-2.5,25)
 pl.grid()
 ax1.set_ylabel("z (km)")

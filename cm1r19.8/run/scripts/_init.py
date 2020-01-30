@@ -5,7 +5,7 @@
 
 ###@author: Edward and Chenxi
 ###"""
-namesim="ref_200m"
+namesim="control_ref_200m"
 path="/lustre/project/m2_jgu-w2w/w2w/egroot/CM1mod/cm1r19.8/run/"
 import numpy as np
 import matplotlib.pyplot as pl

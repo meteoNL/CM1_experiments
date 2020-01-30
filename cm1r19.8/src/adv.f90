@@ -2464,8 +2464,8 @@
         do j=j1,j2
         do i=1,ni
           tot = vdiag(i,j,k,vd_vadv)
-          advz(i,j,k) = -(dumz(i,j,k+1)-dumz(i,j,k))*rdz*mh(1,1,k)
           vdiag(i,j,k,vd_diag) = advz(i,j,k)
+          advz(i,j,k) = -(dumz(i,j,k+1)-dumz(i,j,k))*rdz*mh(1,1,k)
           ndiff                = ( advz(i,j,k)                                  &
                 + v3d(i,j,k)*0.5*( (rrw(i,j  ,k+1)-rrw(i,j  ,k))*rdz*mh(1,1,k)  &
                                   +(rrw(i,j-1,k+1)-rrw(i,j-1,k))*rdz*mh(1,1,k)  &
