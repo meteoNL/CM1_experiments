@@ -15,9 +15,9 @@ from div import D2div, MSE_inst
 matplotlib.rcParams.update({'font.size': 18})
 
 # simulations to compare
-namesim0="controlling_lve_0.6"
-namesim1="controlling_lve_0.8"
-namesim2="controlling_lve_1.2"
+namesim2="controlling_vadv_0.8"
+namesim1="controlling_lve_1.1"
+namesim0="controlling_lve_0.9"
 namesim="control_ref_200m"
 path="/lustre/project/m2_jgu-w2w/w2w/egroot/CM1mod/cm1r19.8/run/"
 #load netCDF data
@@ -36,7 +36,7 @@ def integration_mask(x1,x2,y1,y2,xmask,ymask):
     selection = selection*(xmask<x2)*(ymask>y1)*(ymask<y2)
     return selection
 
-def prepare_data(dataset,lvef):
+def prepare_data(dataset,lvef=1.0):
     '''Reads in grids of data, selects region of interest for calculations, calculates divergence and moist static energy
     and extracts time and veritcal levels to add correct tmie stamp in the plots'''
     xmask,ymask = np.meshgrid(dataset["xh"],dataset["yh"])
@@ -68,10 +68,10 @@ def fillarrays(size,dataset,divar,MSEarray,selectionarray):
     return qvarray, divarray, momadvarray, deltaMSE
 
 #execute functions for netCDF data
-selection, div, MSE, lvls, time_stamp, stamp = prepare_data(test,1.0)
-selection0, div0, MSE0, lvls0, time_stamp0, stamp0 = prepare_data(test0,0.6)
-selection1, div1, MSE1, lvls1, time_stamp1, stamp1 = prepare_data(test1,0.8)
-selection2, div2, MSE2, lvls2, time_stamp2, stamp2 = prepare_data(test2,1.2)
+selection, div, MSE, lvls, time_stamp, stamp = prepare_data(test)
+selection0, div0, MSE0, lvls0, time_stamp0, stamp0 = prepare_data(test0,0.9)
+selection1, div1, MSE1, lvls1, time_stamp1, stamp1 = prepare_data(test1,1.1)
+selection2, div2, MSE2, lvls2, time_stamp2, stamp2 = prepare_data(test2)
 #create arrays to store budget calculation values
 qv_array, div_array, momadv_array, delta_MSE = returnfourzeroarrays(lvls)
 qv_array0, div_array0, momadv_array0, delta_MSE0 = returnfourzeroarrays(lvls0)
