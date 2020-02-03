@@ -75,6 +75,22 @@ Simulations and slurm-files
 6111320 --- simulation cubic grid at 200 m, control_vadv 1.00, control_lve 1.00
 6111523 --- simulation cubic grid at 100 m, control_vadv 1.00, control_lve 1.00
 6117926 --- vadv_0.8 simulation, 200 m, control_vadv 0.80, control_lve 1.00
+---------------
+xxx6141119 --- MSEadv_0.8 simulation, 200 m, fracMSE_adv 0.80,
+6143900 --- MSEadv_0.8 simulation, 200 m, fracMSE_adv 0.80,
+6143295 --- MSEadv_1.5 simulation, 200 m, fracMSE_adv 1.50,
+6141811 --- MSEadv_0.5 simulation, 200 m, fracMSE_adv 0.50,
+
+Ensemble simulations (as reference 200 m run)
+6140958 ---- 6095.9565472, member 01
+6140968 ---- 5758.42068902, member 02
+6140969 ---- 5887.00610239, member 03
+6140972 ---- 6052.55517416, member 04
+6140974 ---- 5695.83407152, member 05
+6140984 ---- 5744.91637676, member 06
+6140996 ---- 5737.47939255, member 07
+6141018 ---- 5968.36439833, member 08
+6141063 ---- 6095.57941954, member 09
 
 
 

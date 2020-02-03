@@ -1,0 +1,4 @@
+6095.9565472, 5758.42068902, 5887.00610239, 6052.55517416, 5695.83407152, 5744.91637676, 5737.47939255, 5968.36439833, 6095.57941954
+
+
+# These ensemble members were drawn by executing 6000+(np.random.rand(9)-np.ones(9)*np.(np.random.rand(1)))*50/0.1111, which yields an ensemble with 9 members of on average 50 m separation between the individual members: the total separation is maximum 450 m. Since 6000 is an actual additional member by applying a next member np.random.rand(1), they can appear anywhere in the interval 5550-6450 metres (but only use half of it since the random number between 0 and 1 drawn determines where the reference simulation will be).  The actual separation is eventually 400.122 m, which means that the average separation is 50.015 m and including the reference simulation 44.46 m.

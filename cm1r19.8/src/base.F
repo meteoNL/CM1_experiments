@@ -2131,7 +2131,7 @@
       elseif(iwnd.eq.2)then
 
         udep1=2000.0
-        udep2=6000.0
+        udep2=control_wprof
         umax1=7.0
         umax2=31.0
 

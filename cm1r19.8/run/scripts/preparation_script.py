@@ -13,7 +13,7 @@ import matplotlib
 matplotlib.rcParams.update({'font.size': 18}) #larger font in the plots
 
 path="/lustre/project/m2_jgu-w2w/w2w/egroot/CM1mod/cm1r19.8/run/"
-namesim = "controlling_vadv_0.5"; ccf = 5.000 #specify name of simulation and its factor to get the correct cross-section at constant x
+namesim = "controlling_lve_1.1"; ccf = 5.000 #specify name of simulation and its factor to get the correct cross-section at constant x
 varname = "w" #variable of which the top view for level given below is plotted with read_nc_CM1.py
 lvl=115 #level at which we will look if appropriate
 name_figs = "simulation_"+varname
@@ -37,4 +37,4 @@ time = np.linspace(0,lensim,steps)
 
 #calculate divergence and instantaneous moist static energy distribution
 div=D2div(test,xmask,ymask)
-MSE=MSE_inst(test)
+MSE=MSE_inst(test,1.1)

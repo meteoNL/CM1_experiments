@@ -8,6 +8,8 @@
  ppnode       =      40,
  control_lve  =    1.00,
  control_vadv =    1.00,
+ fracMSEadv   =    0.80,
+ control_wprof=  6000.0,
  timeformat   =       2,
  timestats    =       1,
  terrain_flag = .false.,
