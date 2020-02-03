@@ -144,7 +144,7 @@
 
 !-----------------------------------------------------------------------
 
-      real control_lve,control_vadv,dx,dy,dz,dtl,timax,run_time,              &
+      real control_lve,control_vadv,control_wprof,fracMSEadv,dx,dy,dz,dtl,timax,run_time,              &
            tapfrq,rstfrq,statfrq,prclfrq,turbfrq,azimavgfrq,hifrqfrq,         &
            kdiff2,kdiff6,fcor,kdiv,alph,rdalpha,zd,xhd,alphobc,umove,vmove,   &
            v_t,l_h,lhref1,lhref2,l_inf,ndcnst,cnstce,cnstcd,                  &
@@ -196,7 +196,7 @@
 !-----------------------------------------------------------------------
 
       namelist /param0/ nx,ny,nz,nodex,nodey,ppnode,control_lve,control_vadv, &
-                        timeformat,timestats,terrain_flag,procfiles
+                        control_wprof, fracMSEadv, timeformat,timestats,terrain_flag,procfiles
       namelist /param1/ dx,dy,dz,dtl,timax,run_time,                    &
                         tapfrq,rstfrq,statfrq,prclfrq
       namelist /param2/                                                 &

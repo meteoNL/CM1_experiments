@@ -7,9 +7,9 @@
 #SBATCH -n40
 #SBATCH --mail-type=ALL
 #SBATCH --mail-user=egroot
-#SBATCH --mem-per-cpu=1100M
+#SBATCH --mem-per-cpu=3100M
 
-dirname="no_sim"
+dirname="new_runs"
 
 
 #### Load modules

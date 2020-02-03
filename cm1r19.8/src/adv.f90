@@ -14,7 +14,8 @@
                        rru,rrv,rrw,s0,s,sten,pdef,pdefweno,dt,weps,                         &
                        flag,sw31,sw32,se31,se32,ss31,ss32,sn31,sn32,rdsf,c1,c2,rho,ri,diffit, &
                        dobud,ibd,ied,jbd,jed,kbd,ked,ndiag,diag,sd_hadv,sd_vadv,sd_subs,    &
-                       sd_hidiff,sd_vidiff,sd_hediff,wprof,dumk1,dumk2,hadvorder,vadvorder)
+                       sd_hidiff,sd_vidiff,sd_hediff,wprof,dumk1,dumk2,hadvorder,vadvorder, &
+                       ntrac, thflag)
       use input
       use constants
       use pdef_module
@@ -52,7 +53,7 @@
       real, intent(inout) , dimension(ibd:ied,jbd:jed,kbd:ked,ndiag) :: diag
       real, intent(in), dimension(kb:ke) :: wprof
       double precision, intent(inout), dimension(kb:ke) :: dumk1,dumk2
-      integer, intent(in) :: hadvorder,vadvorder
+      integer, intent(in) :: hadvorder,vadvorder,ntrac,thflag
  
       integer :: i,j,k,hadv
       logical :: doitw,doite,doits,doitn
@@ -618,7 +619,7 @@
       enddo
       enddo
 
-    ELSE
+    ELSE IF((ntrac.ne.1 .AND. thflag.ne.1) .OR. fracMSEadv.eq.1) THEN
 
 !$omp parallel do default(shared)   &
 !$omp private(i,j,k)
@@ -626,6 +627,19 @@
       do j=1,nj
       do i=1,ni
         sten(i,j,k)=sten(i,j,k)+( (advx(i,j,k)+advy(i,j,k))+advz(i,j,k)    &
+                                 +s(i,j,k)*divx(i,j,k) )*rr0(1,1,k)
+      enddo
+      enddo
+      enddo
+
+    ELSE
+
+!$omp parallel do default(shared)   &
+!$omp private(i,j,k)
+      do k=1,nk
+      do j=1,nj
+      do i=1,ni
+        sten(i,j,k)=sten(i,j,k)+( (advx(i,j,k)+advy(i,j,k))+fracMSEadv*advz(i,j,k)   &
                                  +s(i,j,k)*divx(i,j,k) )*rr0(1,1,k)
       enddo
       enddo
