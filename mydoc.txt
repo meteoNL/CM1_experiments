@@ -75,3 +75,9 @@ Simulations and slurm-files
 6111320 --- simulation cubic grid at 200 m, control_vadv 1.00, control_lve 1.00
 6111523 --- simulation cubic grid at 100 m, control_vadv 1.00, control_lve 1.00
 6117926 --- vadv_0.8 simulation, 200 m, control_vadv 0.80, control_lve 1.00
+
+
+
+For the visualisation part: change LvE in the current output of MSE-figures when LvE is modified!!
+
+
