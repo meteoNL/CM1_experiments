@@ -22,7 +22,7 @@ def plot_cross_sections(varname1, varname2, xmask1, zmask1, xmask2, zmask2,clrs2
     fnames=[] #initialise list for names
     minimum,maximum = autoextremes(varname1) #calculate values for legend
     viewdbz=varname1[timing,:,:,xcell] #extract variables at one x-coordinate
-    if len(varname2[:,0,0,0])>5:
+    if len(varname2[:,0,0,0])>10:
         viewdbz2 = varname2[timing,:,:,xcell]
     else:
         viewdbz2 = varname2[:,:,:,xcell]

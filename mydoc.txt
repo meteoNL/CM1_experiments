@@ -80,6 +80,7 @@ xxx6141119 --- MSEadv_0.8 simulation, 200 m, fracMSE_adv 0.80,
 6143900 --- MSEadv_0.8 simulation, 200 m, fracMSE_adv 0.80,
 6143295 --- MSEadv_1.5 simulation, 200 m, fracMSE_adv 1.50,
 6141811 --- MSEadv_0.5 simulation, 200 m, fracMSE_adv 0.50,
+6146566 --- MSEadv_1.2 simulation, 200 m, fracMSE_adv 1.20,
 
 Ensemble simulations (as reference 200 m run)
 6140958 ---- 6095.9565472, member 01
@@ -93,7 +94,7 @@ Ensemble simulations (as reference 200 m run)
 6141063 ---- 6095.57941954, member 09
 
 
+Sometimes we find only 23 time steps in the .nc-file, which means usually that the initial conditions have been omitted. Be careful!
 
-For the visualisation part: change LvE in the current output of MSE-figures when LvE is modified!!
-
+Compute difference plots between MSE runs and between VADV plots to better understand their roles! Lkike cross seciotns!
 

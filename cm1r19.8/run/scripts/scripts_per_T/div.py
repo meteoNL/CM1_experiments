@@ -7,7 +7,7 @@ Created on Wed Nov 20 17:04:58 2019
 """
 import numpy as np
 
-timing = np.arange(19)
+timing = np.arange(15,25)
 
 def D2div(test,xmask,ymask):
     '''Calculates two dimensional divergence based on finite differences between two neighbouring cells and assuming a regular grid'''

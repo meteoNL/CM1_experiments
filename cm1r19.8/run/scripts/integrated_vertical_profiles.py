@@ -15,16 +15,16 @@ from div import D2div, MSE_inst
 matplotlib.rcParams.update({'font.size': 18})
 
 # simulations to compare
-namesim2="ref_res_1km"
-namesim1="cubic_res_100m"
-namesim0="cubic_res_200m"
-namesim="control_ref_200m"
+namesim2="controlling_MSEadv_0.8__incomplete"
+namesim1="controlling_MSEadv_1.2__incomplete"
+namesim0="ref_res_1km"
+namesim="ref_res_500m"
 path="/lustre/project/m2_jgu-w2w/w2w/egroot/CM1mod/cm1r19.8/run/"
 #load netCDF data
 test = S.Dataset(path+namesim+"/cm1out.nc",mode="r") # get netCDF data
 test0=S.Dataset(path+namesim0+"/cm1out.nc",mode="r")
 test1=S.Dataset(path+namesim1+"/cm1out.nc",mode="r")
-#test2=S.Dataset(path+namesim2+"/cm1out.nc",mode="r")
+test2=S.Dataset(path+namesim2+"/cm1out.nc",mode="r")
 
 #set domain budget calculations
 x1, x2, y1, y2 = -35, 60, -30, 50
@@ -92,50 +92,50 @@ ax2 = ax1.twiny()
 ax1.plot(qv_array[:],test["z"][:],c="r", label= r"Condensation rate ($s^{-1}$)")
 ax1.plot(qv_array0[:],test0["z"][:],c="r", ls="--")
 ax1.plot(qv_array1[:],test1["z"][:],c="r", ls="-.")
-#ax1.plot(qv_array2[:],test2["z"][:],c="r", ls=":")
+ax1.plot(qv_array2[:],test2["z"][:],c="r", ls=":")
 ax1.legend(loc="lower left", frameon=False)
 ax2.plot(100000*div_array[:],test["z"][:],c="b",label=r"Divergence ($10^{-5} s^{-1}$)")
 ax2.plot(100000*div_array0[:],test0["z"][:],c="b",ls="--")
 ax2.plot(100000*div_array1[:],test1["z"][:],c="b",ls="-.")
-#ax2.plot(100000*div_array2[:],test2["z"][:],c="b",ls=":")
+ax2.plot(100000*div_array2[:],test2["z"][:],c="b",ls=":")
 ax2.plot(10000*momadv_array[:],test["z"][:],c="g", label=r"Vert. adv. of hor. mom. ($0.0001$ $ms^{-2}$)")
 ax2.plot(10000*momadv_array0[:],test0["z"][:],c="g",ls="--")
 ax2.plot(100000*div_array1[:],test1["z"][:],c="b",ls="-.")
-#ax2.plot(10000*momadv_array2[:],test2["z"][:],c="g",ls=":")
+ax2.plot(10000*momadv_array2[:],test2["z"][:],c="g",ls=":")
 ax2.plot(0.01*delta_MSE[:],test["z"][:],c="y",label=r"$\Delta$Moist static energy ($100$ $J/kg$)")
 ax2.plot(0.01*delta_MSE0[:],test0["z"][:],c="y",ls="--")
 ax2.plot(100000*div_array1[:],test1["z"][:],c="b",ls="-.")
-#ax2.plot(0.01*delta_MSE2[:],test2["z"][:],c="y",ls=":")
+ax2.plot(0.01*delta_MSE2[:],test2["z"][:],c="y",ls=":")
 
 #### save data in csv
 np.savetxt(path+namesim+"/momadv.csv",momadv_array,delimiter=",")
 np.savetxt(path+namesim0+"/momadv.csv",momadv_array0,delimiter=",")
 np.savetxt(path+namesim1+"/momadv.csv",momadv_array1,delimiter=",")
-#np.savetxt(path+namesim2+"/momadv.csv",momadv_array2,delimiter=",")
+np.savetxt(path+namesim2+"/momadv.csv",momadv_array2,delimiter=",")
 
 np.savetxt(path+namesim+"/div.csv",div_array,delimiter=",")
 np.savetxt(path+namesim0+"/div.csv",div_array0,delimiter=",")
 np.savetxt(path+namesim1+"/div.csv",div_array1,delimiter=",")
-#np.savetxt(path+namesim2+"/div.csv",div_array2,delimiter=",")
+np.savetxt(path+namesim2+"/div.csv",div_array2,delimiter=",")
 
 np.savetxt(path+namesim+"/qtend.csv",qv_array,delimiter=",")
 np.savetxt(path+namesim0+"/qtend.csv",qv_array0,delimiter=",")
 np.savetxt(path+namesim1+"/qtend.csv",qv_array1,delimiter=",")
-#np.savetxt(path+namesim2+"/qtend.csv",qv_array2,delimiter=",")
+np.savetxt(path+namesim2+"/qtend.csv",qv_array2,delimiter=",")
 
 np.savetxt(path+namesim+"/delta_MSE.csv",delta_MSE,delimiter=",")
 np.savetxt(path+namesim0+"/delta_MSE.csv",delta_MSE0,delimiter=",")
 np.savetxt(path+namesim1+"/delta_MSE.csv",delta_MSE1,delimiter=",")
-#np.savetxt(path+namesim2+"/delta_MSE.csv",delta_MSE2,delimiter=",")
+np.savetxt(path+namesim2+"/delta_MSE.csv",delta_MSE2,delimiter=",")
 
 np.savetxt(path+namesim+"/zarray.csv",test["z"],delimiter=",")
 np.savetxt(path+namesim0+"/zarray.csv",test0["z"],delimiter=",")
 np.savetxt(path+namesim1+"/zarray.csv",test1["z"],delimiter=",")
-#np.savetxt(path+namesim2+"/zarray.csv",test2["z"],delimiter=",")
+np.savetxt(path+namesim2+"/zarray.csv",test2["z"],delimiter=",")
 
 #create layout of the plots
 pl.legend(loc ="upper left",frameon=False)
-#pl.text(40,-5,"Dotted "+str(namesim2), ha="center")
+pl.text(40,-5,"Dotted "+str(namesim2), ha="center")
 pl.text(40,-6,"Dashdotted "+str(namesim1), ha="center")
 pl.text(0,-6,"Dashed "+str(namesim0), ha="center")
 pl.text(0,-5,"Solid "+str(namesim), ha="center")
