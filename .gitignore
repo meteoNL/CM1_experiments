@@ -1,6 +1,8 @@
 *.nc
 *.exe
 *.pyc
+*.png
+*.gif
 
 ###### Standard C/Fortran part
 # Prerequisites
