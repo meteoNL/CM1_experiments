@@ -2,14 +2,14 @@
 
 #SBATCH -A m2_esm
 #SBATCH -p parallel
-#SBATCH -t1170
+#SBATCH -t1260
 #SBATCH -N3
 #SBATCH -n40
 #SBATCH --mail-type=ALL
 #SBATCH --mail-user=egroot
 #SBATCH --mem-per-cpu=1000M
 
-dirname="controlling_MSEadv_1.2"
+dirname="controlling_MSEadv_0.995"
 
 
 #### Load modules
