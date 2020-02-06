@@ -13,8 +13,8 @@ timeslices=np.arange(24)
 fixed = 4
 dfixed = 0.5
 
-listofnames = ["control_ref_200m"]
-lvls = np.array([30])
+listofnames = ["cubic_res_200m","ref_res_1km","ref_res_500m"]
+lvls = np.array([15,6,12])
 i=0
 for name in listofnames:
     lvl = lvls[i]
@@ -37,6 +37,6 @@ for name in listofnames:
          pl.title(name+" | time = %.3d"% int(stamp*5)+" min"+ " | z =  3 km")
          fullname=str(getattr(data[varname], "long_name")+" ("+data[varname].units+")")
          pl.text((lensim*0.52),10, fullname, verticalalignment='center',rotation=90)
-         name_figs="reflectivity_3km_"+str(stamp*5)
-         fn = str(path+name+"/"+name_figs+".png")
+         name_figs="reflectivity_3km_"+"%.3d" % stamp
+         fn = str(path+name+"/pngs/"+name_figs+".png")
          pl.savefig(fn)

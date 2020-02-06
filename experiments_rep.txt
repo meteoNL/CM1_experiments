@@ -1,0 +1,8 @@
+Convective organisation/mode of convection (0.0 ... 0.5 .. 0.8 .. 1.5)
+It seems like modification of the momentum advection term mostly influences our results via the mode of convection that appears in a simulation. Low values for "control_vadv" (vertical advection of u and v) lead to poorly organised convection instead of a supercell modus, which leads to a cut-off of convective plumes, due to the downdraft motion. This is seen in the MSE cross-sections, but needs to be compared to the effect of downdrafts and subsequent cold pools in a x-y plot.
+When vertical advection of horizontal is amplified, smaller cell sizes lead to well organised convection, but smaller cell sizes. 
+
+Modification of advection of moist static energy (0.8 and 1.2)
+Unconserved equations with modification of the moist static energy advection appear to give rise to sources and sinks of heat in the stratosphere after the simulation has started (possibly due to subtle gravity waves triggered by the convection and flow disturbance below? Or an effect of the boundary conditions at the top?). Subsequently, a turbulence source propagates downward from the stratosphere to the surface during the two hour simulation. 
+For values of 0.5 and 1.5 teh simulations "explode" after ten or twenty minutes.
+A solution could be to couple vertical advections of water vapor and potential temperature to conserve moist static energy. It might solve problems. 

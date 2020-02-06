@@ -15,10 +15,10 @@ from div import D2div, MSE_inst
 matplotlib.rcParams.update({'font.size': 18})
 
 # simulations to compare
-namesim2="controlling_MSEadv_0.8__incomplete"
-namesim1="controlling_MSEadv_1.2__incomplete"
+namesim2="controlling_MSEadv_0.995"
+namesim1="ref_res_1km"
 namesim0="ref_res_1km"
-namesim="ref_res_500m"
+namesim="ref_res_1km"
 path="/lustre/project/m2_jgu-w2w/w2w/egroot/CM1mod/cm1r19.8/run/"
 #load netCDF data
 test = S.Dataset(path+namesim+"/cm1out.nc",mode="r") # get netCDF data
