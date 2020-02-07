@@ -33,7 +33,7 @@ minimum,maximum = autoextremes(test[varname])
 clrs = np.linspace(minimum, maximum)
 #define time axis
 steps = len(test["time"])
-time = np.linspace(0,lensim,steps)
+time = test["time"][:]
 
 #calculate divergence and instantaneous moist static energy distribution
 div=D2div(test,xmask,ymask)

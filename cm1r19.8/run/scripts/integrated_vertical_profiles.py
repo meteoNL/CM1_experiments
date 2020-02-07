@@ -15,10 +15,10 @@ from div import D2div, MSE_inst
 matplotlib.rcParams.update({'font.size': 18})
 
 # simulations to compare
-namesim2="controlling_MSEadv_0.995"
-namesim1="ref_res_1km"
-namesim0="ref_res_1km"
-namesim="ref_res_1km"
+namesim2="controlling_lve_1.2"
+namesim1="controlling_lve_1.1"
+namesim0="ref_res_500m"
+namesim="cubic_res_200m"
 path="/lustre/project/m2_jgu-w2w/w2w/egroot/CM1mod/cm1r19.8/run/"
 #load netCDF data
 test = S.Dataset(path+namesim+"/cm1out.nc",mode="r") # get netCDF data
@@ -68,10 +68,10 @@ def fillarrays(size,dataset,divar,MSEarray,selectionarray):
     return qvarray, divarray, momadvarray, deltaMSE
 
 #execute functions for netCDF data
-selection, div, MSE, lvls, time_stamp, stamp = prepare_data(test)
-selection0, div0, MSE0, lvls0, time_stamp0, stamp0 = prepare_data(test0,0.9)
+selection, div, MSE, lvls, time_stamp, stamp = prepare_data(test,1.0)
+selection0, div0, MSE0, lvls0, time_stamp0, stamp0 = prepare_data(test0,1.0)
 selection1, div1, MSE1, lvls1, time_stamp1, stamp1 = prepare_data(test1,1.1)
-selection2, div2, MSE2, lvls2, time_stamp2, stamp2 = prepare_data(test2)
+selection2, div2, MSE2, lvls2, time_stamp2, stamp2 = prepare_data(test2,1.2)
 #create arrays to store budget calculation values
 qv_array, div_array, momadv_array, delta_MSE = returnfourzeroarrays(lvls)
 qv_array0, div_array0, momadv_array0, delta_MSE0 = returnfourzeroarrays(lvls0)

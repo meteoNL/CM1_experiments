@@ -23,7 +23,7 @@ def MSE_inst(data):
     Cp = 1005.7
     g = 9.81
     Lv = 2501e3
-    MSE = Cp*data["th"][timing,:,:,:] + g*data["winterp"][timing,:,:,:] + Lv*data["qv"][timing,:,:,:]
+    MSE = Cp*data["th"][timing,:,:,:] + Lv*data["qv"][timing,:,:,:]
     return MSE
 
 def autoextremes(var):

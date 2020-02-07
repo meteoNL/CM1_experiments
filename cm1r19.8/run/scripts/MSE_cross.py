@@ -50,7 +50,7 @@ for i in np.arange(steps):
     pl.text((lensim*0.52),10, fullname, verticalalignment='center',rotation=90)
     
     #save and add filenames to list for gif
-    fn = str(path+namesim+"/"+name_figs+"%.3d" % i+".png")
+    fn = str(path+namesim+"/pngs/"+name_figs+"%.3d" % i+".png")
     pl.savefig(fn)
     fnames+=[fn]
 #%%
