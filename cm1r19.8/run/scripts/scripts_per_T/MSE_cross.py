@@ -10,7 +10,7 @@ import numpy as np
 import matplotlib.pyplot as pl
 #import numpy.ma as ma
 from preparation_script import *
-timing = np.array([20,21,22,23,24])
+timing = np.arange(25)
 
 fnames=[] #initialise list
 name_figs = "cross_MSE"

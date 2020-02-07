@@ -9,7 +9,7 @@
 #SBATCH --mail-user=egroot
 #SBATCH --mem-per-cpu=1000M
 
-dirname="controlling_MSEadv_0.995"
+dirname="controlling_MSEadv_0.96"
 
 
 #### Load modules

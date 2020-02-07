@@ -16,8 +16,8 @@ matplotlib.rcParams.update({'font.size': 18})
 
 # simulations to compare
 namesim0="control_ref_200m"
-namesim1="cubic_res_100m"
-namesim="cubic_res_200m"
+namesim1="ref_res_1km"
+namesim="cubic_res_100m"
 path="/lustre/project/m2_jgu-w2w/w2w/egroot/CM1mod/cm1r19.8/run/"
 #load netCDF data
 test = S.Dataset(path+namesim+"/cm1out.nc",mode="r") # get netCDF data

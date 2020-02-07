@@ -8,7 +8,7 @@
  ppnode       =      40,
  control_lve  =    1.00,
  control_vadv =    1.00,
- fracMSEadv   =   0.995,
+ fracMSEadv   =    0.96,
  control_wprof=  6000.0,
  timeformat   =       2,
  timestats    =       1,

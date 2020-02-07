@@ -18,7 +18,7 @@ minimum,maximum = autoextremes(MSE)
 minimum2,maximum2 =  -2e-3, 2e-3
 clrs = np.linspace(minimum, maximum,51)
 clrsdiv = np.linspace(minimum2,maximum2,9)
-timing =np.array([20,21,22,23,24])
+timing =np.arange(25)
 if len(div[:,0,0,0])==25:
     div_x=div[timing,:,:,xcell]
     MSE_x=MSE[timing,:,:,xcell]
