@@ -5,6 +5,7 @@ import matplotlib.pyplot as pl
 import netCDF4 as S
 import matplotlib
 import numpy as np
+import sys
 matplotlib.rcParams.update({'font.size': 18})
 lensim = 120
 path="/lustre/project/m2_jgu-w2w/w2w/egroot/CM1mod/cm1r19.8/run/"
@@ -13,8 +14,8 @@ timeslices=np.arange(15,19)
 fixed = 4
 dfixed = 0.5
 
-listofnames = ["ref_res_1km","ref_res_500m","cubic_res_200m"]
-lvls = np.array([23,46,57])
+listofnames = [sys.argv[1]]
+lvls = np.array([57])
 i=0
 for name in listofnames:
     lvl = lvls[i]
