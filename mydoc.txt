@@ -1,4 +1,4 @@
-
+!! Adjust wind speed of reference frame in umove/vmove of namelist.input !! Then subsequently adjust base.F
 
 Run the model: 
 - check necessity to compile the file or not by running makefile
