@@ -62,7 +62,7 @@ for i in np.arange(len(list_of_sims)):
   ##  all_numbers[i,:,:nlev]=result
     plotvariables(result,list_full_names[i],list_clrs[i],list_styles[i],list_w[i])
 
-addlegends(ax1,r"Divergence ($10^{-5} s^{-1}$)")
+addlegends(ax1,r"Divergence ($s^{-1}$)")
 addlegends(ax2,r"Condensation rate ($s^{-1}$)")
 addlegends(ax3,r"Vert. adv. of hor. mom. ($ms^{-2}$)")
 addlegends(ax4,r"$\Delta$Moist static energy ($J/kg$)")
