@@ -55,10 +55,10 @@
       real, intent(inout) , dimension(ibd:ied,jbd:jed,kbd:ked,ndiag) :: diag
       real, intent(in), dimension(kb:ke) :: wprof
       double precision, intent(inout), dimension(kb:ke) :: dumk1,dumk2
-      integer, intent(in) :: hadvorder,vadvorder,ntrac,thflag
+      integer, intent(in) :: hadvorder,vadvorder,ntrac
  
       integer :: i,j,k,hadv
-      logical :: doitw,doite,doits,doitn
+      logical :: doitw,doite,doits,doitn,thflag
       logical :: doweno
       real :: tem0,coef,tot,ndiff
 
@@ -621,14 +621,27 @@
       enddo
       enddo
 
-    ELSE IF((ntrac.ne.1 .AND. thflag.ne.1) .OR. fracMSEadv.eq.1) THEN
+    ELSE IF(ntrac.eq.1) THEN
 
 !$omp parallel do default(shared)   &
 !$omp private(i,j,k)
       do k=1,nk
       do j=1,nj
       do i=1,ni
-        sten(i,j,k)=sten(i,j,k)+( (advx(i,j,k)+advy(i,j,k))+advz(i,j,k)    &
+        sten(i,j,k)=sten(i,j,k)+( (advx(i,j,k)+advy(i,j,k))+fracMSEadv*advz(i,j,k)    &
+                                 +s(i,j,k)*divx(i,j,k) )*rr0(1,1,k)
+      enddo
+      enddo
+      enddo
+
+    ELSE IF(thflag.eq.1) THEN
+
+!$omp parallel do default(shared)   &
+!$omp private(i,j,k)
+      do k=1,nk
+      do j=1,nj
+      do i=1,ni
+        sten(i,j,k)=sten(i,j,k)+( (advx(i,j,k)+advy(i,j,k))+fracMSEadv*advz(i,j,k)    &
                                  +s(i,j,k)*divx(i,j,k) )*rr0(1,1,k)
       enddo
       enddo
@@ -641,7 +654,7 @@
       do k=1,nk
       do j=1,nj
       do i=1,ni
-        sten(i,j,k)=sten(i,j,k)+( (advx(i,j,k)+advy(i,j,k))+fracMSEadv*advz(i,j,k)   &
+        sten(i,j,k)=sten(i,j,k)+( (advx(i,j,k)+advy(i,j,k))+advz(i,j,k)   &
                                  +s(i,j,k)*divx(i,j,k) )*rr0(1,1,k)
       enddo
       enddo

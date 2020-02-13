@@ -2,14 +2,14 @@
 
 #SBATCH -A m2_esm
 #SBATCH -p parallel
-#SBATCH -t1260
+#SBATCH -t1170
 #SBATCH -N3
 #SBATCH -n40
 #SBATCH --mail-type=ALL
 #SBATCH --mail-user=egroot
-#SBATCH --mem-per-cpu=1000M
+#SBATCH --mem-per-cpu=200M
 
-dirname="test_multicell"
+dirname="indecisive"
 
 
 #### Load modules
