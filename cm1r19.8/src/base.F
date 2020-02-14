@@ -2467,11 +2467,11 @@
         do i=0,ni+1
           zv=0.5*(zh(i,j-1,k)+zh(i,j,k))
           if(zv.lt.udep1)then
-            v0(i,j,k)=uconst1
+            v0(i,j,k)=vconst1
           elseif(zv.gt.udep1 .and. zv.lt.udep2)then
             v0(i,j,k)=(vconst2-vconst1)*(zv-udep1)/(udep2-udep1)+vconst1
           else
-            u0(i,j,k)=vconst2
+            v0(i,j,k)=vconst2
           endif
         enddo
         enddo

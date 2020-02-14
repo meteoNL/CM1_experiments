@@ -2,7 +2,7 @@
 
 #SBATCH -A m2_esm
 #SBATCH -p parallel
-#SBATCH -t1170
+#SBATCH -t180
 #SBATCH -N3
 #SBATCH -n40
 #SBATCH --mail-type=ALL

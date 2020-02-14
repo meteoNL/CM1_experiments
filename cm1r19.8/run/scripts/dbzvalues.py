@@ -13,8 +13,8 @@ timeslices=np.arange(24)
 fixed = 4
 dfixed = 0.5
 
-listofnames = ["cubic_res_200m","ref_res_1km","ref_res_500m"]
-lvls = np.array([15,6,12])
+listofnames = ["controlling_qvadv_0.80","controlling_qvadv_1.20"]
+lvls = np.ones(2)*30
 i=0
 for name in listofnames:
     lvl = lvls[i]
