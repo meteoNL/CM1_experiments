@@ -10,7 +10,8 @@
  control_vadv =    1.00,
  fracMSEadv   =    1.00,
  thflagval    =       .FALSE., !apply fracMSEadv to theta (which triggers unstable gravity waves in stratosphere, triggering turbulence there)  
- control_wprof=  6000.0,
+ qvflagval    =       .FALSE., ! apply fracMSEadv to qv
+ control_wprof=  2500.0,
  timeformat   =       2,
  timestats    =       1,
  terrain_flag = .false.,
@@ -102,7 +103,7 @@
  zd      = 15000.0,
  xhd     = 100000.0,
  alphobc = 60.0,
- umove   =  8.5,
+ umove   =  12.5,
  vmove   =  0.0,
  v_t     =      7.0,
  l_h     =    100.0,

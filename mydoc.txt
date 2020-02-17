@@ -60,6 +60,9 @@ When changing and adding namelist.input variable
 - edit types in input
 - edit order of input and constants in makefile
 
+
+======================== SUPERCELL CASE ========================
+
 Simulations and slurm-files
 6109456 --- reference simulation, 200 m, control_vadv 1.00, control_lve 1.00
 6109606 --- lve_0.6 simulation, 200 m, control_vadv 1.00, control_lve 0.60
@@ -85,6 +88,9 @@ xxx6141119 --- MSEadv_0.8 simulation, 200 m, fracMSE_adv 0.80,
 6416271 --- qvadv_0.8 simulation, 200 m, fracMSE_adv 0.80, applied to only qv
 6416287 --- qvadv_1.2 simulation, 200 m, fracMSE_adv 1.20, applied to only qv
 
+6456423 --- thetaadv_0.95 simulation, 200 m, fracMSE_adv 0.95, applied to only theta
+6456183 --- thetaadv_1.05 simulation, 200 m, fracMSE_adv 1.05, applied to only theta
+
 Ensemble simulations (as reference 200 m run)
 6140958 ---- 6095.9565472, member 01
 6140968 ---- 5758.42068902, member 02
@@ -96,6 +102,38 @@ Ensemble simulations (as reference 200 m run)
 6141018 ---- 5968.36439833, member 08
 6141063 ---- 6095.57941954, member 09
 
+
+======================== NEW CASES: multicell/warm bubble ========================
+6422851 --- simulation at 500 m, bubble/multicell case
+6457374 --- reference simulation at 200 m, bubble/multicell case
+6458710 --- lve_0.6 simulation at 200 m, bubble/multicell case
+6458950 --- cubic simulation at 100 m, bubble/multicell case
+6459269 --- lve_0.8 simulation at 200 m, bubble/multicell case
+6459443 --- lve_0.9 simulation at 200 m, bubble/multicell case
+6459562 --- lve_1.1 simulation at 200 m, bubble/multicell case
+6459839 --- lve_1.2 simulation at 200 m, bubble/multicell case
+6459925 --- cubic simulation at 200 m, bubble/multicell case
+6460011 --- simulation at 1 km, bubble/multicell case
+6460169 --- vadv_0.0 simulation at 200 m, bubble/multicell case
+6460171 --- vadv_0.5 simulation at 200 m, bubble/multicell case
+6460182 --- vadv_0.8 simulation at 200 m, bubble/multicell case
+6460207 --- vadv_1.5 simulation at 200 m, bubble/multicell case
+6460250 --- qvadv_0.8 simulation at 200 m, bubble/multicell case
+6460283 --- qvadv_1.2 simulation at 200 m, bubble/multicell case
+6460323 --- ENS_01 simulation at 200 m, bubble/multicell case 2539.98189467 as wprof
+6460925 --- ENS_02 simulation at 200 m, bubble/multicell case 2399.34195376 as wprof
+6460930 --- ENS_03 simulation at 200 m, bubble/multicell case 2452.91920933 as wprof
+6461527 --- ENS_04 simulation at 200 m, bubble/multicell case 2521.89798923 as wprof
+6461770 --- ENS_05 simulation at 200 m, bubble/multicell case 2373.26419647 as wprof
+6461841 --- ENS_06 simulation at 200 m, bubble/multicell case 2393.71515698 as wprof
+6461923 --- ENS_07 simulation at 200 m, bubble/multicell case 2390.61641356 as wprof
+6461996 --- ENS_08 simulation at 200 m, bubble/multicell case 2486.8184993 as wprof 
+6461996 --- ENS_09 simulation at 200 m, bubble/multicell case 2539.82475814 as wprof
+
+======================== NEW CASES: forcing coldpool/line ========================
+6422856 --- simulation at 500 m, coldpool case
+6463987 --- reference simulation at 200 m, coldpool case
+6465608 --- cubic simulation at 100 m, coldpool case
 
 Sometimes we find only 23 time steps in the .nc-file, which means usually that the initial conditions have been omitted. Be careful!
 

@@ -2176,7 +2176,7 @@
       elseif(iwnd.eq.3)then
 
         udep1=0.0
-        udep2=7500.0
+        udep2=control_wprof
         umax1=-40.0/pi
         umax2=40.0/pi+40.0
 
@@ -2236,7 +2236,7 @@
 
         umax  =   15.0
         udep1 = 4000.0
-        udep2 = 6000.0
+        udep2 = control_wprof
 
         do k=1,nk
         do j=1,nj
@@ -2345,7 +2345,7 @@
       ELSEIF(iwnd.eq.9)THEN
 
         udep1   =   700.0    ! height of bottom of shear layer (m)
-        udep2   =  3000.0    ! height of top of shear layer (m)
+        udep2   =  control_wprof    ! height of top of shear layer (m)
         uconst1 =    -8.75   ! u at bottom of shear layer
         uconst2 =    -4.61   ! u at top of shear layer
 
@@ -2405,7 +2405,7 @@
       ELSEIF(iwnd.eq.11)THEN
 
         udep1   =      0.0   ! height of bottom of shear layer (m)
-        udep2   =   4000.0   ! height of top of shear layer (m)
+        udep2   =   control_wprof   ! height of top of shear layer (m)
         uconst1 =     -9.9   ! u at bottom of shear layer
         uconst2 =     -1.9   ! u at top of shear layer
 
@@ -2441,7 +2441,7 @@
       elseif(iwnd.eq.12)then
 
         udep1   =     0.0    ! height of bottom of shear layer (m)
-        udep2   =  2500.0    ! height of top of shear layer (m)
+        udep2   =     control_wprof ! height of top of shear layer (m)
         uconst1 =     0.0    ! u at bottom of shear layer
         uconst2 =    14.0    ! u at top of shear layer
         vconst1 =    -2.0    ! v at bottom of shear layer

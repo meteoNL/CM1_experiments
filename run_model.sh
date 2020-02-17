@@ -2,14 +2,14 @@
 
 #SBATCH -A m2_esm
 #SBATCH -p parallel
-#SBATCH -t180
+#SBATCH -t1170
 #SBATCH -N3
 #SBATCH -n40
 #SBATCH --mail-type=ALL
 #SBATCH --mail-user=egroot
-#SBATCH --mem-per-cpu=200M
+#SBATCH --mem-per-cpu=3100M
 
-dirname="indecisive"
+dirname="name"
 
 
 #### Load modules
@@ -40,6 +40,7 @@ cp ../namelist.input .
 
 srun -n120 ./cm1.exe
 
+mkdir pngs 
 ##cp cm1out.nc $dirname
 ##mv cm1out_stats.nc $dirname
 ##cp onefile.F $dirname
