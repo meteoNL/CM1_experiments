@@ -128,12 +128,38 @@ Ensemble simulations (as reference 200 m run)
 6461841 --- ENS_06 simulation at 200 m, bubble/multicell case 2393.71515698 as wprof
 6461923 --- ENS_07 simulation at 200 m, bubble/multicell case 2390.61641356 as wprof
 6461996 --- ENS_08 simulation at 200 m, bubble/multicell case 2486.8184993 as wprof 
-6461996 --- ENS_09 simulation at 200 m, bubble/multicell case 2539.82475814 as wprof
+6462521 --- ENS_09 simulation at 200 m, bubble/multicell case 2539.82475814 as wprof
+6487360 --- thetaadv_1.05 simulation, 200 m, bubble/multicell case
+6487361 --- thetaadv_0.95 simulation, 200 m, bubble/multicell case
 
 ======================== NEW CASES: forcing coldpool/line ========================
 6422856 --- simulation at 500 m, coldpool case
-6463987 --- reference simulation at 200 m, coldpool case
+6485961 --- reference simulation at 200 m, coldpool case
 6465608 --- cubic simulation at 100 m, coldpool case
+6485976 --- lve_0.6 simulation at 200 m, coldpool case
+6486001 --- lve_0.8 simulation at 200 m, coldpool case
+6486050 --- lve_0.9 simulation at 200 m, coldpool case
+6486096 --- lve_1.1 simulation at 200 m, coldpool case
+6486127 --- lve_1.2 simulation at 200 m, coldpool case
+6487313 --- vadv_0.0 simulation at 200 m, coldpool case
+6487314 --- vadv_0.5 simulation at 200 m, coldpool case
+6487315 --- vadv_0.8 simulation at 200 m, coldpool case
+6487317 --- vadv_1.5 simulation at 200 m, coldpool case
+6487320 --- ENS_01 simulation at 200 m, coldpool case 2539.98189467 as wprof
+6487321 --- ENS_02 simulation at 200 m, coldpool case 2399.34195376 as wprof
+6487322 --- ENS_03 simulation at 200 m, coldpool case 2452.91920933 as wprof
+6487324 --- ENS_04 simulation at 200 m, coldpool case 2521.89798923 as wprof
+6487337 --- ENS_05 simulation at 200 m, coldpool case 2373.26419647 as wprof
+6487340 --- ENS_06 simulation at 200 m, coldpool case 2393.71515698 as wprof
+6487341 --- ENS_07 simulation at 200 m, coldpool case 2390.61641356 as wprof
+6487345 --- ENS_08 simulation at 200 m, coldpool case 2486.8184993 as wprof 
+6487346 --- ENS_09 simulation at 200 m, coldpool case 2539.82475814 as wprof
+6487348 --- qvadv_0.8 simulation at 200 m, coldpool case
+6487349 --- qvadv_1.2 simulation at 200 m, coldpool case
+6487351 --- thetaadv_1.05 simulation, 200 m, coldpool case
+6487353 --- thetaadv_0.95 simulation, 200 m, coldpool case
+6487358 --- cubic simulation at 200 m, coldpool case
+6487359 --- simulation at 1 km, coldpool case
 
 Sometimes we find only 23 time steps in the .nc-file, which means usually that the initial conditions have been omitted. Be careful!
 

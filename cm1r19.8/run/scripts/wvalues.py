@@ -15,7 +15,7 @@ fixed = 4
 dfixed = 0.5
 
 listofnames = [sys.argv[1]]
-lvls = np.array([57])
+lvls = np.array([115])
 i=0
 for name in listofnames:
     lvl = lvls[i]

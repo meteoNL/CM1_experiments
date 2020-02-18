@@ -7,9 +7,9 @@
 #SBATCH -n40
 #SBATCH --mail-type=ALL
 #SBATCH --mail-user=egroot
-#SBATCH --mem-per-cpu=3100M
+#SBATCH --mem-per-cpu=1050M
 
-dirname="name"
+dirname="bubble_controlling_thetaadv_0.95" 
 
 
 #### Load modules

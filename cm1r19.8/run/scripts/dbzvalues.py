@@ -9,11 +9,11 @@ matplotlib.rcParams.update({'font.size': 18})
 lensim = 120
 path="/lustre/project/m2_jgu-w2w/w2w/egroot/CM1mod/cm1r19.8/run/"
 varname = "dbz"
-timeslices=np.arange(24)
+timeslices=np.arange(22)
 fixed = 4
 dfixed = 0.5
 
-listofnames = ["controlling_qvadv_0.80","controlling_qvadv_1.20"]
+listofnames = ["controlling_thetaadv_0.95","controlling_thetaadv_1.05"]
 lvls = np.ones(2)*30
 i=0
 for name in listofnames:
@@ -34,9 +34,9 @@ for name in listofnames:
          pl.ylabel("y (km)")
          pl.ylim(-lensim/2.,lensim/2.)
          pl.xlim(-lensim/2.,lensim/2.)
-         pl.title(name+" | time = %.3d"% int(stamp*5)+" min"+ " | z =  3 km")
+         pl.title(name+" | time = %.3d"% int(data["time"][stamp]/60)+" min"+ " | z =  3 km")
          fullname=str(getattr(data[varname], "long_name")+" ("+data[varname].units+")")
          pl.text((lensim*0.52),10, fullname, verticalalignment='center',rotation=90)
-         name_figs="reflectivity_3km_"+"%.3d" % stamp
+         name_figs="reflectivity_3km_"+"%.3d" % int(data["time"][stamp]/300)
          fn = str(path+name+"/pngs/"+name_figs+".png")
          pl.savefig(fn)
