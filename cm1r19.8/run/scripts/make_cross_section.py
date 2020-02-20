@@ -23,8 +23,8 @@ def plot_cross_sections(varname1, varname2, xmask1, zmask1, xmask2, zmask2,clrs2
     minimum,maximum = autoextremes(varname1) #calculate values for legend
     if minimum==maximum:
         minimum = maximum - 0.001
-    viewdbz=varname1[:,:,:,xcell] #extract variables at one x-coordinate
-    viewdbz2 = varname2[:,:,:,xcell]
+    viewdbz=varname1[:,:,xycell,:] #extract variables at one x-coordinate
+    viewdbz2 = varname2[:,:,xycell,:]
     clrs = np.linspace(minimum, maximum) #create array for colors
 
     for i in np.arange(steps):
@@ -41,7 +41,7 @@ def plot_cross_sections(varname1, varname2, xmask1, zmask1, xmask2, zmask2,clrs2
         pl.clabel(ap)
         
         #add labels and set plotted coordinates
-        pl.xlabel("y (km)")
+        pl.xlabel("x (km)")
         pl.ylabel("z (km)")
         pl.ylim(0,np.max(zmask1))
         pl.xlim(-lensim/2.,lensim/2.)
@@ -54,7 +54,7 @@ def plot_cross_sections(varname1, varname2, xmask1, zmask1, xmask2, zmask2,clrs2
         pl.text((lensim*0.52),10, fullname, verticalalignment='center',rotation=90)
         
         #save and add filenames to list for gif
-        fn = str(path+namesim+"/"+varname1.name+"%.3d" % i+".png")
+        fn = str(path+namesim+"/pngs/"+varname1.name+"%.3d" % i+".png")
         pl.savefig(fn)
         fnames+=[fn]
     #%%
@@ -67,7 +67,7 @@ def plot_cross_sections(varname1, varname2, xmask1, zmask1, xmask2, zmask2,clrs2
 
 #execute the above defined function for three different combinations of variables which will be plot in cross-sections            
 plot_cross_sections(test["qt_cond"],div, xzmask, zxmask, xzmask, zxmask, clrsdiv)   
-plot_cross_sections(test["vb_diag"],test["v"], xzmaskf,zxmaskf, xzmaskf,zxmaskf, clrsvel)   
-plot_cross_sections(test["ub_diag"],test["u"], xzmask,zxmask, xzmask,zxmask, clrsvel) 
+plot_cross_sections(test["vb_diag"],test["v"], xzmask,zxmask, xzmask,zxmask, clrsvel)   
+plot_cross_sections(test["ub_diag"],test["u"], xzmaskf,zxmaskf, xzmaskf,zxmaskf, clrsvel) 
 
 pl.clf()

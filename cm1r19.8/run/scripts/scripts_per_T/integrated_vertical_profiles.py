@@ -18,7 +18,7 @@ matplotlib.rcParams.update({'font.size': 18})
 namesim0="control_ref_200m"
 namesim1="ref_res_1km"
 namesim="cubic_res_100m"
-path="/lustre/project/m2_jgu-w2w/w2w/egroot/CM1mod/cm1r19.8/run/"
+path="/lustre/project/m2_jgu-w2w/w2w/egroot/CM1mod/cm1r19.8/run/coldpool_"
 #load netCDF data
 test = S.Dataset(path+namesim+"/cm1out.nc",mode="r") # get netCDF data
 test0=S.Dataset(path+namesim0+"/cm1out.nc",mode="r")

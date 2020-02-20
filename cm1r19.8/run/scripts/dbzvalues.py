@@ -5,19 +5,20 @@ import matplotlib.pyplot as pl
 import netCDF4 as S
 import matplotlib
 import numpy as np
+import sys
 matplotlib.rcParams.update({'font.size': 18})
 lensim = 120
 path="/lustre/project/m2_jgu-w2w/w2w/egroot/CM1mod/cm1r19.8/run/"
 varname = "dbz"
-timeslices=np.arange(22)
+timeslices=np.arange(25)
 fixed = 4
 dfixed = 0.5
 
-listofnames = ["controlling_thetaadv_0.95","controlling_thetaadv_1.05"]
-lvls = np.ones(2)*30
+listofnames = [sys.argv[1]]
+lvls = [sys.argv[2]]
 i=0
 for name in listofnames:
-    lvl = lvls[i]
+    lvl = int(lvls[i])
     i+=1
     data=S.Dataset(path+name+"/cm1out.nc",mode="r")
     xmask,ymask = np.meshgrid(data["xh"],data["yh"])

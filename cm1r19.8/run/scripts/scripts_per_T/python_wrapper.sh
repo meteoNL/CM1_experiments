@@ -13,8 +13,10 @@
 ## srun -n1 read_nc_CM1.py
 
 ## scripts are always provided with the python script name to be run and the factor with which lve was mulptiplied (even if 1.0)
-srun -n1 python MSE_cross_whout.py cubic_res_100m 1.0 
-srun -n1 python MSE_cross.py cubic_res_100m 1.0
+srun -n1 python MSE_cross_whout.py coldpool_cubic_res_100m 1.0 
+srun -n1 python MSE_cross.py coldpool_cubic_res_100m 1.0
+srun -n1 make_cross_section.py coldpool_cubic_res_100m 1.0
+srun -n1 read_nc_CM1.py coldpool_cubic_res_100m 1.0
 
 
 

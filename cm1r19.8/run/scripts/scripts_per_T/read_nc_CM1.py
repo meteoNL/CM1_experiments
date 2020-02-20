@@ -10,7 +10,7 @@ import matplotlib.pyplot as pl
 from preparation_script import *
 #import numpy.ma as ma
 
-timing=np.array([20,21,22,23,24])
+timing=np.arange(0,25)
 
 fnames=[] #initialise list
 

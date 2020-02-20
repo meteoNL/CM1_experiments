@@ -10,15 +10,15 @@ matplotlib.rcParams.update({'font.size': 18})
 lensim = 120
 path="/lustre/project/m2_jgu-w2w/w2w/egroot/CM1mod/cm1r19.8/run/"
 varname = "w"
-timeslices=np.arange(15,19)
+timeslices=np.arange(10,15)
 fixed = 4
 dfixed = 0.5
 
 listofnames = [sys.argv[1]]
-lvls = np.array([115])
+lvls = [sys.argv[2]]
 i=0
 for name in listofnames:
-    lvl = lvls[i]
+    lvl = int(lvls[i])
     i+=1
     data=S.Dataset(path+name+"/cm1out.nc",mode="r")
     xmask,ymask = np.meshgrid(data["xh"],data["yh"])

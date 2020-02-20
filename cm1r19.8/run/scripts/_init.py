@@ -4,9 +4,15 @@
 ####Created on Fri Oct 05 08:12:20 2018
 
 ###@author: Edward and Chenxi
+
+###This script is a modification of a model made in my Master in Utrecht during the course Simulation (Simulation of Ocean and Atmosphere & Climate), in collaboration with Chenxi Qiu in 2018. In this implementation it shows a "skew-T" type of diagram of the SE boundary of the model domain (or other cells if these are selected) at initial conditions, including wind barbs, vertical height in altitude and common pressure levels. A simple microphysics and mixing representation could even be switched on. The initial parcel is pushed upward at 6 m/s (or otherwise if winit is modified). 
+
+### Since convection evolves with time explicitly, for different applications tend (ending time of the simulation) should be modified. 
+
+## Original source code of the "SOAC" project: https://github.com/meteoNL/CloudParcelModel_SOACproject
 ###"""
 namesim="control_ref_200m"
-path="/lustre/project/m2_jgu-w2w/w2w/egroot/CM1mod/cm1r19.8/run/"
+path="/lustre/project/m2_jgu-w2w/w2w/egroot/CM1mod/cm1r19.8/run/coldpool_"
 import numpy as np
 import matplotlib.pyplot as pl
 import netCDF4 as S
@@ -85,10 +91,10 @@ i=0
 #fn='20100826_12z_Essen_mod.txt'
 #f=open(fn,'r')
 
-p_d = test["prs"][0,:,0,0]
+p_d = test["prs"][0,:,-1,-1]
 z = 1000*test["z"][:]#np.array([])
-T = test["th"][0,:,0,0]-g/cp*z
-wv = test["qv"][0,:,0,0]
+T = test["th"][0,:,-1,-1]-g/cp*z
+wv = test["qv"][0,:,-1,-1]
 #for line in f:
 #    line=line.split(';')
 #    p_d = np.append(p_d, float(line[1])*100.) #read pressure and convert to Pa
@@ -403,7 +409,7 @@ def Tdew(T,wv,p):
     return Tdew
 xbarbs=304
 knms=0.5144
-everyW=9
+everyW=4
 def plotbarbs(u,v,z,everyW):
     for i in np.arange(0,len(u),everyW):
         if z[i]< 16:
@@ -426,14 +432,14 @@ for i in np.arange(len(pdef)):
     pl.text(311,plevelsplot[i],str(int(pdef[i]/100)))
 pl.text(314,5000,"Pressure (hPa)",rotation=90)
 pl.plot((T+Tgamma*z),z,c='g',label='Tenv')
-pl.title("Initial conditions")
+pl.title("Initial conditions plot")
 pl.xlim(270,310)
 pl.xticks(xticks,(xticks-273))
 pl.legend(loc=3)
 pl.ylim(0,16000)
 pl.xlabel('Temperature (degrees Celsius)')
 pl.ylabel('Height (m)')
-pl.savefig(path+namesim+"/"+"initial.png")
+pl.savefig(path+namesim+"/"+"initial_new.png")
 
 ##rain event evolution
 #pl.figure(figsize=(12,8))

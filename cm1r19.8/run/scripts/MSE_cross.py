@@ -18,8 +18,8 @@ minimum,maximum = autoextremes(MSE)
 minimum2,maximum2 =  -2e-3, 2e-3
 clrs = np.linspace(minimum, maximum,51)
 clrsdiv = np.linspace(minimum2,maximum2,9)
-div_x=div[:,:,:,xcell]
-MSE_x=MSE[:,:,:,xcell]
+div_x=div[:,:,xycell,:]
+MSE_x=MSE[:,:,xycell,:]
     
 #define time axis
 
@@ -37,7 +37,7 @@ for i in np.arange(steps):
     pl.clabel(ap)
     
     #add labels and set plotted coordinates
-    pl.xlabel("y (km)")
+    pl.xlabel("x (km)")
     pl.ylabel("z (km)")
     pl.ylim(0,np.max(zxmask))
     pl.xlim(-lensim/2.,lensim/2.)
