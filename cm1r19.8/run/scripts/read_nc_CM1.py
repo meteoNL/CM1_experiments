@@ -5,7 +5,7 @@ Created on Thu Nov 14 17:29:45 2019
 
 @author: egroot
 """
-
+#imports
 import matplotlib.pyplot as pl
 from preparation_script import *
 #import numpy.ma as ma

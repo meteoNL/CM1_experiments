@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 #### -*- coding: utf-8 -*-
 
+## see for a bit more documentation dbzvalues.py!!
+
 import matplotlib.pyplot as pl
 import netCDF4 as S
 import matplotlib
@@ -35,6 +37,8 @@ for name in listofnames:
          pl.ylabel("y (km)")
          pl.ylim(-lensim/2.,lensim/2.)
          pl.xlim(-lensim/2.,lensim/2.)
+         
+         ## change z=... km below if another level is useD!!
          pl.title(name+" | time = %.3d"% int(stamp*5)+" min"+ " | z =  11.5 km")
          fullname=str(getattr(data[varname], "long_name")+" ("+data[varname].units+")")
          pl.text((lensim*0.52),10, fullname, verticalalignment='center',rotation=90)

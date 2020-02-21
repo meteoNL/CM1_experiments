@@ -18,12 +18,14 @@ clrsvel = np.linspace(-12,12,9)
 clrsdiv = np.linspace(-2e-3, 2e-3,9)
 
 def plot_cross_sections(varname1, varname2, xmask1, zmask1, xmask2, zmask2,clrs2):
-    '''This function makes some cross sections at all time steps saved in the netcdf'''
+    '''This function makes some cross sections at all time steps saved in the netcdf, with varname1 and varname2 included. The xmasks and zmasks are the grids over which the cross section is plotted and with clrs2 one can define values for the value of contourlines that the second variable is plotted at'''
     fnames=[] #initialise list for names
     minimum,maximum = autoextremes(varname1) #calculate values for legend
+    
+    #prevent minimum and maximum to be equal
     if minimum==maximum:
         minimum = maximum - 0.001
-    viewdbz=varname1[:,:,xycell,:] #extract variables at one x-coordinate
+    viewdbz=varname1[:,:,xycell,:] #extract variables at one x- or y-coordinate (defined in preparation_script.py)
     viewdbz2 = varname2[:,:,xycell,:]
     clrs = np.linspace(minimum, maximum) #create array for colors
 

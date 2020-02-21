@@ -1,5 +1,5 @@
 #!/bin/bash
-
+### SBATCH recipe
 #SBATCH -A m2_esm
 #SBATCH -p parallel
 #SBATCH -t1000
@@ -9,8 +9,7 @@
 #SBATCH --mail-user=egroot
 #SBATCH --mem-per-cpu=3100M
 
-## srun -n1 make_cross_section.py
-## srun -n1 read_nc_CM1.py
+### Runs a sequence of .py scripts to generate pictures and visualize the run. Required arguments: described below.
 
 ## scripts are always provided with the python script name to be run and 1. the number of grid cells per kilometre in horizontal and 2. the factor with which lve was mulptiplied (even if 1.0) and 3. the model level at which we need near-tropopause vertical velocity (or reflectivity)
 

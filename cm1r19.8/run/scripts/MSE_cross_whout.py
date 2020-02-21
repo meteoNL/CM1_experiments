@@ -6,6 +6,8 @@ Created on Mon Nov 25 15:53:06 2019
 @author: egroot
 """
 
+## For slightly improved documentation, see MSE_cross!!
+
 import numpy as np
 import matplotlib.pyplot as pl
 #import numpy.ma as ma

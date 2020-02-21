@@ -8,7 +8,8 @@ Created on Wed Nov 20 17:04:58 2019
 import numpy as np
 
 def D2div(test,xmask,ymask):
-    '''Calculates two dimensional divergence based on finite differences between two neighbouring cells and assuming a regular grid'''
+    '''Calculates two dimensional divergence based on finite differences between two neighbouring cells and assuming a regular grid
+    input: test has u and v velocities and xmaks and ymask are used to compute distance between grid cells, assumed to be regular. Divergence is just 2Dim.'''
     du=test['u'][:,:,:,1:]-test['u'][:,:,:,:-1]
     dv=test['v'][:,:,1:,:]-test['v'][:,:,:-1,:]
     dx=1000*(xmask[0,1]-xmask[0,0])
@@ -17,7 +18,7 @@ def D2div(test,xmask,ymask):
     return div
 
 def MSE_inst(data,lvef=1.0):
-    '''Calculates instantaneous moist static energy field'''
+    '''Calculates instantaneous moist static energy field. Optional argument to give latent heat of vaporization fractional change (1.0 if default latent heat)'''
     Cp = 1005.7
     g = 9.81
     Lv = 2501e3*lvef

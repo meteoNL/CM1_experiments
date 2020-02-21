@@ -6,6 +6,7 @@ Created on Mon Nov 25 15:53:06 2019
 @author: egroot
 """
 
+#imports
 import numpy as np
 import matplotlib.pyplot as pl
 #import numpy.ma as ma
@@ -14,10 +15,15 @@ from preparation_script import *
 fnames=[] #initialise list
 name_figs = "cross_MSE"
 
+# declare extreme values
 minimum,maximum = autoextremes(MSE)
 minimum2,maximum2 =  -2e-3, 2e-3
+
+#declare colors
 clrs = np.linspace(minimum, maximum,51)
 clrsdiv = np.linspace(minimum2,maximum2,9)
+
+# get divergence and moist static energy arrays, which come with div.py and for xycell coordinate which comes with preparation_script.py
 div_x=div[:,:,xycell,:]
 MSE_x=MSE[:,:,xycell,:]
     

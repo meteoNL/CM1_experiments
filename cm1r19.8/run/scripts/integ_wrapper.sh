@@ -1,5 +1,5 @@
 #!/bin/bash
-
+### SBATCH recipe
 #SBATCH -A m2_esm
 #SBATCH -p bigmem
 #SBATCH -t40
@@ -9,6 +9,9 @@
 #SBATCH --mail-user=egroot
 #SBATCH --mem-per-cpu=6000M
 ###srun -n1 modules_for_python.sh
+
+##This script run runs "integrated_vertical_profiles.py" to make vertical cross sections of the runs to be analysed, each time combining four runs in a plot. The plot itself is maybe not very convenient, but the .csv-files generated allow with the "newplots.py" scripts for better visulation (still a too many lines though).
+## Arguments required: only the fraction with which the latent heat of vaporization was mulptiplied. 
 srun -n1 python integrated_vertical_profiles.py coldpool_control_ref_200m 1.0 coldpool_controlling_lve_0.6 0.6 coldpool_controlling_lve_0.8 0.8 coldpool_controlling_lve_0.9 0.9
 ###srun -n1 python integrated_vertical_profiles.py coldpool_control_ref_200m 1.0 coldpool_controlling_lve_1.1 1.1 coldpool_controlling_lve_1.2 1.2 coldpool_controlling_vadv_0.0 1.0
 ###srun -n1 python integrated_vertical_profiles.py coldpool_control_ref_200m 1.0 coldpool_controlling_vadv_0.5 1.0 coldpool_controlling_vadv_0.8 1.0 coldpool_controlling_vadv_1.5 1.0

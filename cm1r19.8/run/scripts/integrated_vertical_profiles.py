@@ -15,7 +15,7 @@ from div import D2div, MSE_inst
 
 matplotlib.rcParams.update({'font.size': 18})
 
-# simulations to compare
+# simulations to compare, four simulation names from .sh file inherited
 namesim2=sys.argv[1]##"controlling_lve_1.2"
 namesim1=sys.argv[3]##"controlling_lve_1.1"
 namesim0=sys.argv[5]##"ref_res_500m"
@@ -27,8 +27,9 @@ test0=S.Dataset(path+namesim0+"/cm1out.nc",mode="r")
 test1=S.Dataset(path+namesim1+"/cm1out.nc",mode="r")
 test2=S.Dataset(path+namesim2+"/cm1out.nc",mode="r")
 
-#set domain budget calculations
+#set domain in time and space of budget calculations
 x1, x2, y1, y2 = -59, 59, -20, 40 ##-35, 60, -30, 50
+budgettime = 75 ## only possible to select an output time
 
     
 def integration_mask(x1,x2,y1,y2,xmask,ymask):
@@ -39,15 +40,25 @@ def integration_mask(x1,x2,y1,y2,xmask,ymask):
 
 def prepare_data(dataset,lvef=1.0):
     '''Reads in grids of data, selects region of interest for calculations, calculates divergence and moist static energy
-    and extracts time and veritcal levels to add correct tmie stamp in the plots'''
+    and extracts time and veritcal levels to add correct tmie stamp in the plots
+
+    If latent heat constant does not have its usual value, it is used as optional argument with 1.0 as the usual value of about 2.5e6'''
+
+    # get 2D grid and integration mask
     xmask,ymask = np.meshgrid(dataset["xh"],dataset["yh"])
     selection = integration_mask(x1,x2,y1,y2,xmask,ymask)
+    
+    # use divergence and moist static energy functions from div module!
     div = D2div(dataset,xmask,ymask)
     MSE = MSE_inst(dataset,lvef)
     lvls = len(dataset["z"])
-    time_stamp=75 ## 90
+    time_stamp=budgettime ## 75 ## 90
+    
+    ## find output index belongingg to time_stamp
     time=test["time"][:]/60
     stamp=int(np.arange(len(time))[time==time_stamp])
+
+    ## return this
     return selection, div, MSE, lvls, time_stamp, stamp
 
 def returnfourzeroarrays(size):
@@ -57,7 +68,11 @@ def returnfourzeroarrays(size):
 
 def fillarrays(size,dataset,divar,MSEarray,selectionarray):
     '''This function fills arrays with the appropriate values from the dataset for condensation (qt_cond), 
-    divergence, vertical advection of horizontal momentum and change in moist static energy'''
+    divergence, vertical advection of horizontal momentum and change in moist static energy'
+    size = array size/numberr of vertical levels
+    dataset = input netCDF data.
+    divarray and MSE array contain calculated ivergence and moist static energy
+   selection array contains a 1 for a cell taken into account and a 0 for one not taken into account for the budget'''
     qvarray,divarray,momadvarray,deltaMSE=np.zeros(size),np.zeros(size),np.zeros(size),np.zeros(size)
     for i in np.arange(size):
         qvarray[i]=np.mean(-dataset["qt_cond"][0:stamp,i,:,:]*selectionarray)
@@ -108,7 +123,7 @@ ax2.plot(0.01*delta_MSE0[:],test0["z"][:],c="y",ls="--")
 ax2.plot(100000*div_array1[:],test1["z"][:],c="b",ls="-.")
 ax2.plot(0.01*delta_MSE2[:],test2["z"][:],c="y",ls=":")
 
-#### save data in csv
+#### save data in csv, per layer and per simulation, in simulation folders
 np.savetxt(path+namesim+"/momadv.csv",momadv_array,delimiter=",")
 np.savetxt(path+namesim0+"/momadv.csv",momadv_array0,delimiter=",")
 np.savetxt(path+namesim1+"/momadv.csv",momadv_array1,delimiter=",")

@@ -5,20 +5,24 @@
 
 ###@author: Edward and Chenxi
 
-###This script is a modification of a model made in my Master in Utrecht during the course Simulation (Simulation of Ocean and Atmosphere & Climate), in collaboration with Chenxi Qiu in 2018. In this implementation it shows a "skew-T" type of diagram of the SE boundary of the model domain (or other cells if these are selected) at initial conditions, including wind barbs, vertical height in altitude and common pressure levels. A simple microphysics and mixing representation could even be switched on. The initial parcel is pushed upward at 6 m/s (or otherwise if winit is modified). 
+###This script is a modification of a model made in my Master in Utrecht during the course Simulation (Simulation of Ocean and Atmosphere & Climate, SOAC), in collaboration with Chenxi Qiu in 2018. In this implementation it shows a "skew-T" type of diagram of the SE boundary of the model domain (or other cells if these are selected) at initial conditions, including wind barbs, vertical height in altitude and common pressure levels. A simple microphysics and mixing representation could even be switched on. The initial parcel is pushed upward at 6 m/s (or otherwise if winit is modified). 
 
 ### Since convection evolves with time explicitly, for different applications tend (ending time of the simulation) should be modified. 
 
 ## Original source code of the "SOAC" project: https://github.com/meteoNL/CloudParcelModel_SOACproject
 ###"""
-namesim="control_ref_200m"
-path="/lustre/project/m2_jgu-w2w/w2w/egroot/CM1mod/cm1r19.8/run/coldpool_"
+
+namesim="control_ref_200m" ## simulation name to be visualised
+path="/lustre/project/m2_jgu-w2w/w2w/egroot/CM1mod/cm1r19.8/run/coldpool_" ## path to the simulation
+
+#imports
 import numpy as np
 import matplotlib.pyplot as pl
 import netCDF4 as S
 import matplotlib
 
 matplotlib.rcParams.update({'font.size': 21}) 
+## read netCDF library
 test=S.Dataset(path+namesim+"/cm1out.nc",mode="r")
 
 #input of the model
@@ -91,6 +95,7 @@ i=0
 #fn='20100826_12z_Essen_mod.txt'
 #f=open(fn,'r')
 
+## netCDF data to be read from specified gridcells, default SE most region. Pressure (p_d), height (z), potential temperature and water vapor mixing ratio.
 p_d = test["prs"][0,:,-1,-1]
 z = 1000*test["z"][:]#np.array([])
 T = test["th"][0,:,-1,-1]-g/cp*z
