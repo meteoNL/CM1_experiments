@@ -9,6 +9,8 @@
  control_lve  =    1.00,
  control_vadv =    1.00,
  fracMSEadv   =    1.00,
+ thflagval    =       .FALSE., !apply fracMSEadv to theta (which triggers unstable gravity waves in stratosphere, triggering turbulence there)  
+ qvflagval    =       .FALSE., ! apply fracMSEadv to qv
  control_wprof=  6000.0,
  timeformat   =       2,
  timestats    =       1,
