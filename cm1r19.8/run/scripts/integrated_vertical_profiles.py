@@ -28,7 +28,7 @@ test1=S.Dataset(path+namesim1+"/cm1out.nc",mode="r")
 test2=S.Dataset(path+namesim2+"/cm1out.nc",mode="r")
 
 #set domain budget calculations
-x1, x2, y1, y2 = -35, 60, -30, 50
+x1, x2, y1, y2 = -59, 59, -20, 40 ##-35, 60, -30, 50
 
     
 def integration_mask(x1,x2,y1,y2,xmask,ymask):
@@ -45,7 +45,7 @@ def prepare_data(dataset,lvef=1.0):
     div = D2div(dataset,xmask,ymask)
     MSE = MSE_inst(dataset,lvef)
     lvls = len(dataset["z"])
-    time_stamp=90
+    time_stamp=75 ## 90
     time=test["time"][:]/60
     stamp=int(np.arange(len(time))[time==time_stamp])
     return selection, div, MSE, lvls, time_stamp, stamp

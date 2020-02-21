@@ -817,7 +817,7 @@
                    rru,rrv,rrw,th3d,sadv,thten,0,0,dt   ,weps,                             &
                    flag,sw31,sw32,se31,se32,ss31,ss32,sn31,sn32,rdsf,c1,c2,rho,rr,diffit, &
                    .true.,ibdt,iedt,jbdt,jedt,kbdt,kedt,ntdiag,tdiag,td_hadv,td_vadv,td_subs, &
-                   td_hidiff,td_vidiff,td_hediff,wprof,dumk1,dumk2,hadvordrs,vadvordrs,n,.FALSE.)
+                   td_hidiff,td_vidiff,td_hediff,wprof,dumk1,dumk2,hadvordrs,vadvordrs,n,.FALSE.,.FALSE.)
 
       !$omp parallel do default(shared)  &
       !$omp private(i,j)

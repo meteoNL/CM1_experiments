@@ -15,7 +15,7 @@
                        flag,sw31,sw32,se31,se32,ss31,ss32,sn31,sn32,rdsf,c1,c2,rho,ri,diffit, &
                        dobud,ibd,ied,jbd,jed,kbd,ked,ndiag,diag,sd_hadv,sd_vadv,sd_subs,    &
                        sd_hidiff,sd_vidiff,sd_hediff,wprof,dumk1,dumk2,hadvorder,vadvorder, &
-                       ntrac, thflag)
+                       ntrac, thflag,qvflag)
       use input
       use constants
       use pdef_module
@@ -56,7 +56,7 @@
       integer, intent(in) :: hadvorder,vadvorder,ntrac
  
       integer :: i,j,k,hadv
-      logical :: doitw,doite,doits,doitn,thflag
+      logical :: doitw,doite,doits,doitn,thflag,qvflag
       logical :: doweno
       real :: tem0,coef,tot,ndiff
 
@@ -619,7 +619,7 @@
       enddo
       enddo
 
-    ELSE IF(ntrac.eq.1) THEN
+    ELSE IF(ntrac.eq.1 .AND. qvflag) THEN
 
 !$omp parallel do default(shared)   &
 !$omp private(i,j,k)
@@ -632,7 +632,7 @@
       enddo
       enddo
 
-    ELSE IF(thflag.eq.1) THEN
+    ELSE IF(thflag) THEN
 
 !$omp parallel do default(shared)   &
 !$omp private(i,j,k)

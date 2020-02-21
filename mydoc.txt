@@ -165,3 +165,5 @@ Sometimes we find only 23 time steps in the .nc-file, which means usually that t
 
 Compute difference plots between MSE runs and between VADV plots to better understand their roles! Lkike cross seciotns!
 
+/lustre/project/m2_jgu-w2w/w2w/egroot/CM1mod/cm1r19.8/run/supercellcase/controlling_thetaadv_0.95
+
