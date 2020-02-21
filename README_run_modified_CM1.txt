@@ -23,3 +23,7 @@ Postprocessing
 
 --- plot budgets ---
 ??. By running ./newvalues.py, a PDF and PNG with vertical budget overviews will be saved  belonging to the selected subdomains (integrated... script). This appears in the /cm1r19.8/run/budgets/ folder. The script runs in principle only if four folders for four experiments are provided, unless modified by the user. 
+
+
+
+

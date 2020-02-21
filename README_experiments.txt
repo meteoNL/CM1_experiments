@@ -25,3 +25,7 @@ The following components have been altered in the Fortran code and namelist. (li
 * An ensemble at 200x200x100 m grid cells, where the wind profile is slightly altered. The 2.5 km shear is redistributed over a 2.37-2.54 km layer (moderate shear profile) and 5.69-6.10 km depth (supercell case with high shear).
 
 
+
+To help me with understanding how to work with a supercomputer (in particular Mogon2) I want to thank some people for their help in setting up the runs on the machine: besides my supervisor Holger Tost also fellow Wavestoweather scientists Christopher Polster and Manuel Baumgartner (currently all at Johannes Gutenberg University). 
+
+

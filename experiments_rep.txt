@@ -7,3 +7,12 @@ Modification of advection of moist static energy (0.8 and 1.2)
 Unconserved equations with modification of the moist static energy advection appear to give rise to sources and sinks of heat in the stratosphere after the simulation has started (possibly due to subtle gravity waves triggered by the convection and flow disturbance below? Or an effect of the boundary conditions at the top?). Subsequently, a turbulence source propagates downward from the stratosphere to the surface during the two hour simulation. 
 For values of 0.5 and 1.5 teh simulations "explode" after ten or twenty minutes.
 A solution could be to couple vertical advections of water vapor and potential temperature to conserve moist static energy. It might solve problems. 
+
+
+_________________________________________________
+
+About/after squall line case
+Is it the area that is precipitation from the anvil and exposed to dry midlevels at a large "surface" of the cloud which ventilates condensed air to evaporation and subsequently allows for net no divergence? Mixing is at least less concentrated at the tropopause interface then with the supercell and more or less constrained to this region. Additionally, much more MSE is ventilated by the squall line and over a much wider region. There is also more source air lifted in the squall line case with a higher turnover.
+
+We should think per (kilo)metre squall line compared to the supercell in this context
+Additionally the interplay between dynamics and instability which distinguishes the cell types and particularly the supercell...
