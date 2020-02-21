@@ -79,7 +79,7 @@
            qvavg,qlavg,qtavg,desdt,gamma,tp,delz,pim,thvm,qvm,qlm,   &
            tm,pm,thm,drdt,prsavg,qvl,qvi,fliq,fice,cpml,qim
       real thex,es,qvs,aaa
-      real udep,uconst1,uconst2
+      real udep,uconst1,uconst2,vconst1,vconst2
       real udep1,udep2,umax1,umax2,vmax1,angle,a1,a2,wsp
       real tmp,ql,t1,t2,pitmp
       real hs,lapse
@@ -2176,7 +2176,7 @@
       elseif(iwnd.eq.3)then
 
         udep1=0.0
-        udep2=7500.0
+        udep2=control_wprof
         umax1=-40.0/pi
         umax2=40.0/pi+40.0
 
@@ -2236,7 +2236,7 @@
 
         umax  =   15.0
         udep1 = 4000.0
-        udep2 = 6000.0
+        udep2 = control_wprof
 
         do k=1,nk
         do j=1,nj
@@ -2345,7 +2345,7 @@
       ELSEIF(iwnd.eq.9)THEN
 
         udep1   =   700.0    ! height of bottom of shear layer (m)
-        udep2   =  3000.0    ! height of top of shear layer (m)
+        udep2   =  control_wprof    ! height of top of shear layer (m)
         uconst1 =    -8.75   ! u at bottom of shear layer
         uconst2 =    -4.61   ! u at top of shear layer
 
@@ -2405,7 +2405,7 @@
       ELSEIF(iwnd.eq.11)THEN
 
         udep1   =      0.0   ! height of bottom of shear layer (m)
-        udep2   =   4000.0   ! height of top of shear layer (m)
+        udep2   =   control_wprof   ! height of top of shear layer (m)
         uconst1 =     -9.9   ! u at bottom of shear layer
         uconst2 =     -1.9   ! u at top of shear layer
 
@@ -2432,6 +2432,51 @@
           enddo
 
         enddo
+
+!-----------------------------------------------------------------------
+!  iwnd = 12
+! 
+!  new profile.
+
+      elseif(iwnd.eq.12)then
+
+        udep1   =     0.0    ! height of bottom of shear layer (m)
+        udep2   =     control_wprof ! height of top of shear layer (m)
+        uconst1 =     0.0    ! u at bottom of shear layer
+        uconst2 =    14.0    ! u at top of shear layer
+        vconst1 =    -2.0    ! v at bottom of shear layer
+        vconst2 =     2.0    ! v at top of shear layer (shear over same layer depth as u-shear)
+
+        do k=1,nk
+        do j=0,nj+1
+        do i=0,ni+2
+          zu=0.5*(zh(i-1,j,k)+zh(i,j,k))
+          if(zu.lt.udep1)then
+            u0(i,j,k)=uconst1
+          elseif(zu.gt.udep1 .and. zu.lt.udep2)then
+            u0(i,j,k)=(uconst2-uconst1)*(zu-udep1)/(udep2-udep1)+uconst1
+          else
+            u0(i,j,k)=uconst2
+          endif
+        enddo
+        enddo
+        enddo
+
+        do k=1,nk
+        do j=0,nj+2
+        do i=0,ni+1
+          zv=0.5*(zh(i,j-1,k)+zh(i,j,k))
+          if(zv.lt.udep1)then
+            v0(i,j,k)=vconst1
+          elseif(zv.gt.udep1 .and. zv.lt.udep2)then
+            v0(i,j,k)=(vconst2-vconst1)*(zv-udep1)/(udep2-udep1)+vconst1
+          else
+            v0(i,j,k)=vconst2
+          endif
+        enddo
+        enddo
+        enddo
+
 
 !-----------------------------------------------------------------------
 

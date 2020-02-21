@@ -18,14 +18,14 @@ matplotlib.rcParams.update({'font.size': 18})
 namesim0="control_ref_200m"
 namesim1="ref_res_1km"
 namesim="cubic_res_100m"
-path="/lustre/project/m2_jgu-w2w/w2w/egroot/CM1mod/cm1r19.8/run/"
+path="/lustre/project/m2_jgu-w2w/w2w/egroot/CM1mod/cm1r19.8/run/coldpool_"
 #load netCDF data
 test = S.Dataset(path+namesim+"/cm1out.nc",mode="r") # get netCDF data
 test0=S.Dataset(path+namesim0+"/cm1out.nc",mode="r")
 test1=S.Dataset(path+namesim1+"/cm1out.nc",mode="r")
 
 #set domain budget calculations
-x1, x2, y1, y2 = -35, 60, -30, 50
+x1, x2, y1, y2 =  -59, 59, -20, 40 ##-35, 60, -30, 50
 
     
 def integration_mask(x1,x2,y1,y2,xmask,ymask):
@@ -42,7 +42,7 @@ def prepare_data(dataset):
     div = D2div(dataset,xmask,ymask)
     MSE = MSE_inst(dataset)
     lvls = len(dataset["z"])
-    time_stamp=90
+    time_stamp=75 ## 90
     time=test["time"][:]/60
     stamp=int(np.arange(len(time))[time==time_stamp])
     return selection, div, MSE, lvls, time_stamp, stamp

@@ -2,3 +2,6 @@
 
 
 # These ensemble members were drawn by executing 6000+(np.random.rand(9)-np.ones(9)*np.(np.random.rand(1)))*50/0.1111, which yields an ensemble with 9 members of on average 50 m separation between the individual members: the total separation is maximum 450 m. Since 6000 is an actual additional member by applying a next member np.random.rand(1), they can appear anywhere in the interval 5550-6450 metres (but only use half of it since the random number between 0 and 1 drawn determines where the reference simulation will be).  The actual separation is eventually 400.122 m, which means that the average separation is 50.015 m and including the reference simulation 44.46 m.
+
+2539.98189467, 2399.34195376, 2452.91920933, 2521.89798923, 2373.26419647, 2393.71515698,  2390.61641356, 2486.8184993, 2539.82475814
+# The converted numbers of the ensemble profile when applying (nums1-6000)/2.4+2500 with the same scaling in wind profile variation, equivalent to 2500+(np.random.rand(9)-np.ones(9)*np.(np.random.rand(1)))*20.833333/0.1111

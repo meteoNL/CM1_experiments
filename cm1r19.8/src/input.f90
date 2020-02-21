@@ -24,7 +24,7 @@
 
 !-----------------------------------
 
-      logical terrain_flag,procfiles,dowr,                                    &
+      logical terrain_flag,thflagval,qvflagval,procfiles,dowr,                                    &
               patchsws,patchsww,patchses,patchsee,                            &
               patchnwn,patchnww,patchnen,patchnee,                            &
               p2tchsws,p2tchsww,p2tchses,p2tchsee,                            &
@@ -196,7 +196,8 @@
 !-----------------------------------------------------------------------
 
       namelist /param0/ nx,ny,nz,nodex,nodey,ppnode,control_lve,control_vadv, &
-                        control_wprof, fracMSEadv, timeformat,timestats,terrain_flag,procfiles
+                        control_wprof, fracMSEadv, thflagval,qvflagval,                 &
+                        timeformat,timestats,terrain_flag,procfiles
       namelist /param1/ dx,dy,dz,dtl,timax,run_time,                    &
                         tapfrq,rstfrq,statfrq,prclfrq
       namelist /param2/                                                 &
