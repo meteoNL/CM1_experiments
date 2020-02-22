@@ -16,3 +16,5 @@ Is it the area that is precipitation from the anvil and exposed to dry midlevels
 
 We should think per (kilo)metre squall line compared to the supercell in this context
 Additionally the interplay between dynamics and instability which distinguishes the cell types and particularly the supercell...
+
+Maybe also think along the pdV = W reasoning if partly consistent?

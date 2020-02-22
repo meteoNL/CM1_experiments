@@ -1,7 +1,8 @@
-This altered version of CM1 ran on Mogon2 in Mainz, maintained by ZDV. 
+This altered version of CM1 ran on Mogon2 in Mainz. Mogon2 is operqated and maintained by ZDV. 
 
 To run an experiment: 
 Set-up
+0. run the make file on your machine by navigating to ./cm1r19.8/src and commanding "make".
 1. choose a name for a folder inside cm1r19.8/run, such as "my_experiment1". Put this name in "run_model.sh" with the mkdir command.
 2. edit namelist.input, or copy one of the reference namelists in cases_reference_namelists/subfolders to cm1r19.8/run/
 3. load the libraries that are required on Mogon2, by running modules_required_run.sh 
