@@ -7,7 +7,7 @@
  nodey        =      3, 
  ppnode       =      40, 
  control_lve  =    1.00,
- control_vadv =    0.50,
+ control_vadv =    0.80,
  fracMSEadv   =    1.00,
  thflagval    =       .FALSE., !apply fracMSEadv to theta (which triggers unstable gravity waves in stratosphere, triggering turbulence there)  
  qvflagval    =       .FALSE., ! apply fracMSEadv to qv
