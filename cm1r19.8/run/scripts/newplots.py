@@ -31,7 +31,7 @@ def readfiles(sim):
   
  it does so for given simulation (argument)
     '''
-    path="/lustre/project/m2_jgu-w2w/w2w/egroot/CM1mod/cm1r19.8/run/coldpool_"+sim+"/"
+    path="/lustre/project/m2_jgu-w2w/w2w/egroot/CM1mod/cm1r19.8/run/"+sim+"/"
     div_array=np.genfromtxt(path+"div.csv",delimiter=",")
     cond_array=np.genfromtxt(path+"qtend.csv",delimiter=",")
     momadv_array=np.genfromtxt(path+"momadv.csv",delimiter=",")
